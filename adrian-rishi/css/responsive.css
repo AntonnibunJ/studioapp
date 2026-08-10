@@ -1,0 +1,162 @@
+/* ============================================================
+   responsive.css
+   Auto-extracted from original inline <style> block.
+   No CSS rules were changed, renamed, or reordered within
+   this file relative to the original stylesheet.
+   ============================================================ */
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media (min-width: 600px) {
+  .photo-grid { grid-template-columns: repeat(3, 1fr); }
+  .counters { grid-template-columns: repeat(5, 1fr); }
+  .counters-row2 { grid-template-columns: repeat(2, 1fr); }
+  .stat-row { grid-template-columns: repeat(4, 1fr); }
+  .storage-grid { grid-template-columns: repeat(4, 1fr); }
+  .tab-content { padding: 2rem 1.5rem; }
+  .owner-card { padding: 1.75rem; }
+}
+
+@media (min-width: 900px) {
+  .photo-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ══════════════════════════════════════════
+   DESKTOP / "SYSTEM USE" LAYOUT
+   Below 1024px is left as the original mobile layout
+   (untouched) in case anyone opens it on a phone.
+   Above it, the app becomes a proper desktop dashboard:
+   a left sidebar for navigation instead of a horizontal
+   tab bar, since a mouse+wide-screen user reads a sidebar
+   far faster than a scrolling row of tabs.
+══════════════════════════════════════════ */
+@media (min-width: 1024px) {
+  /* Default: hidden. We no longer key this off the panels' own inline
+     style attribute at all — two attempts at that (matching "none",
+     then "flex") each got tripped up by unrelated inline data that
+     themes.js also happens to write onto these same elements (a
+     decorative SVG pattern containing fill="none", etc.), so any
+     future addition to that data could break this again the same way.
+
+     Instead we key off #app-header's className, which auth.js sets to
+     exactly one of "platform-header" / "studio-header" / "client-header"
+     per session, purely for this kind of role identification, and never
+     touches for any other reason. It's a controlled, exact string with
+     no possible collision — a fundamentally safer signal than parsing
+     substrings out of a style attribute that other code also writes to. */
+  #panel-platform, #panel-studio, #panel-client {
+    display: none !important;
+  }
+  .platform-header ~ #panel-platform,
+  .studio-header ~ #panel-studio,
+  .client-header ~ #panel-client {
+    display: grid !important;
+    grid-template-columns: 230px 1fr;
+  }
+  #panel-studio, #panel-client { grid-template-rows: auto 1fr; }
+  #panel-platform { grid-template-rows: 1fr; }
+
+  #panel-studio .studio-banner,
+  #panel-client .theme-banner {
+    grid-column: 1 / -1;
+  }
+
+  .main-tabs {
+    grid-column: 1;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.2rem;
+    border-bottom: none;
+    border-right: 1px solid var(--hairline);
+    padding: 1.5rem 0.75rem;
+    overflow-x: visible;
+  }
+
+  .main-tab {
+    padding: 0.7rem 0.9rem;
+    border-bottom: none;
+    border-left: 2px solid transparent;
+    border-radius: 8px;
+    text-align: left;
+  }
+  .main-tab:hover:not(.active):not(.platform-active) { background: rgba(255,255,255,0.03); }
+  .main-tab.active {
+    border-bottom-color: transparent;
+    border-left-color: var(--accent);
+    background: rgba(47,110,86,0.08);
+  }
+  .main-tab.platform-active {
+    border-bottom-color: transparent;
+    border-left-color: var(--champagne);
+    background: rgba(201,185,128,0.08);
+  }
+  #panel-client .main-tab.active {
+    border-left-color: var(--royal-blue);
+    background: rgba(93,147,199,0.08);
+  }
+
+  .tab-content {
+    grid-column: 2;
+    max-width: 1200px;
+    padding: 2rem 2.5rem;
+  }
+
+  #studios-list, #recent-studios-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+    align-items: start;
+  }
+  #studios-list .studio-item, #recent-studios-list .studio-item { margin-bottom: 0 !important; }
+
+  .project-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .login-heading { font-size: 3.4rem; }
+}
+
+/* ══════════════════════════════════════════
+   SAFE-AREA INSETS (notched / gesture-bar phones)
+   Additive padding only — layout and breakpoints above are untouched.
+══════════════════════════════════════════ */
+.app-header {
+  padding-left: max(1.25rem, env(safe-area-inset-left));
+  padding-right: max(1.25rem, env(safe-area-inset-right));
+  padding-top: max(0.5rem, env(safe-area-inset-top));
+}
+.main-tabs {
+  padding-left: max(1rem, env(safe-area-inset-left));
+  padding-right: max(1rem, env(safe-area-inset-right));
+}
+.tab-content {
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+}
+#screen-platform-login, #screen-studio-login, #screen-client-login {
+  padding-bottom: max(2rem, env(safe-area-inset-bottom));
+}
+.lightbox-footer {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+.toast {
+  bottom: max(1.5rem, calc(env(safe-area-inset-bottom) + 0.75rem));
+}
+
+/* ══════════════════════════════════════════
+   SMALL PHONES (≤360px) — tighten rhythm slightly so nothing
+   feels cramped on the narrowest common screens.
+══════════════════════════════════════════ */
+@media (max-width: 360px) {
+  .tab-content { padding: 1.15rem 0.9rem; }
+  .owner-card { padding: 1.15rem; }
+  .login-heading { font-size: 2.2rem; }
+  .stat-row, .counters { gap: 0.5rem; }
+  .photo-grid { gap: 0.4rem; }
+}
+
+

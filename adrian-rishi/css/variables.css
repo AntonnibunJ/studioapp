@@ -1,0 +1,90 @@
+/* ============================================================
+   variables.css
+   Auto-extracted from original inline <style> block.
+   No CSS rules were changed, renamed, or reordered within
+   this file relative to the original stylesheet.
+   ============================================================ */
+
+/* ══════════════════════════════════════════
+   CSS VARIABLES
+══════════════════════════════════════════ */
+:root {
+  /* Old variable aliases for JS-generated content */
+  --cream: #151922;
+  --warm-white: #1A202B;
+  --soft-gray: #8C97A7;
+  --charcoal: #E2E8F0;
+  --liked: #EF4444;
+  --bride: #C9A96E;
+  --groom: #8AABB5;
+  --platform: #5D93C7;
+  --platform-light: #8AB4E0;
+  --gold: #C9B980;
+  --gold-light: #E3D9A8;
+  --gold-dim: #8A7A45;
+  --glass-border: rgba(93,147,199,0.2);
+  --bg:           #0B1512;
+  --bg2:          #0F1B17;
+  --card:         #16241E;
+  --card-hover:   #1C2C25;
+  --accent:       #2F6E56;
+  --accent-hover: #3F8267;
+  --success:      #35B489;
+  --warning:      #F0A93B;
+  --danger:       #EF5B5B;
+  --text:         #F3EFE3;
+  --text2:        #C7CDBF;
+  --text3:        #8FA095;
+  --border:       #24322B;
+  --input-bg:     #12201A;
+  --gold:         #C9B980;
+  --gold-glow:    rgba(201,185,128,0.25);
+  --radius-card:  20px;
+  --radius-btn:   14px;
+  --radius-input: 12px;
+  --shadow-sm:    0 2px 8px rgba(0,0,0,0.4);
+  --shadow-md:    0 8px 32px rgba(0,0,0,0.5);
+  --shadow-lg:    0 24px 64px rgba(0,0,0,0.7);
+  --transition:   all 0.25s ease;
+
+  /* Luxury palette additions (visual layer only) — Direction B: Midnight Emerald & Ivory */
+  --champagne:      #C9B980;
+  --champagne-soft: #E3D9A8;
+  --gold-deep:      #A08B4E;
+  --royal-blue:     #5D93C7;
+  --royal-blue-soft:#8AB4E0;
+  --graphite:       #17251F;
+  --hairline:       rgba(224,214,181,0.14);
+  --hairline-soft:  rgba(255,255,255,0.06);
+  --glass:          rgba(22,36,30,0.6);
+  --glass-border:   rgba(224,214,181,0.16);
+  --font-display:   'Fraunces', 'Cormorant Garamond', serif;
+  --font-accent:    'Syne', 'Clash Display', sans-serif;
+  --font-body:      'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
+  --shadow-gold:    0 8px 30px rgba(201,185,128,0.14);
+  --shadow-lift:    0 20px 48px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.35);
+  --ease-lux:       cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* New: consistent spacing scale + disabled/icon tokens (additive only, fills gaps) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --disabled-opacity: 0.45;
+  --icon-size-sm: 14px;
+  --icon-size-md: 17px;
+  --icon-size-lg: 22px;
+
+  /* ── Polish pass v2 (visual-only additions) ── */
+  --text3-soft:     #9BAAA0;               /* slightly lighter than --text3 for better small-text contrast */
+  --shimmer-a:      rgba(255,255,255,0.03);
+  --shimmer-b:      rgba(255,255,255,0.07);
+  --radius-pill:    999px;
+  --touch-min:      44px;                  /* minimum comfortable tap target */
+  --shadow-inset-hairline: 0 1px 0 rgba(255,255,255,0.05) inset;
+}
+
+

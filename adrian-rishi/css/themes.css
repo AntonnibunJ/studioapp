@@ -1,0 +1,159 @@
+/* ══════════════════════════════════════════
+   DYNAMIC FUNCTION-CATEGORY THEME ENGINE
+   Scoped entirely to #panel-client via CSS custom properties set at
+   runtime by applyProjectTheme() in js/themes.js. The defaults below
+   match the app's existing gold/champagne look, so nothing changes for
+   any project until a themed category is actually applied — this file
+   only adds new, additive styling, it does not override anything else.
+══════════════════════════════════════════ */
+
+#panel-client {
+  --theme-accent: var(--gold);
+  --theme-accent-soft: var(--gold-light);
+  --theme-glow: var(--gold-glow);
+  --theme-pattern: none;
+}
+
+/* Active tab and empty-state icons pick up the project's theme color
+   instead of the app-wide champagne gold, so the whole client experience
+   feels consistently themed to the event type. */
+#panel-client .main-tab.active {
+  color: var(--theme-accent) !important;
+  border-bottom-color: var(--theme-accent);
+  text-shadow: 0 0 20px var(--theme-glow);
+}
+#panel-client .main-tab.active::after {
+  background: linear-gradient(90deg, var(--theme-accent), var(--theme-accent-soft));
+}
+#panel-client .empty-icon {
+  color: var(--theme-accent);
+  opacity: 0.75;
+}
+
+.theme-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1rem;
+  border-radius: var(--radius-card);
+  background: linear-gradient(135deg, rgba(255,255,255,0.03), var(--theme-glow) 130%);
+  border: 1px solid var(--theme-glow);
+  box-shadow: 0 8px 28px -10px var(--theme-glow);
+  transition: var(--transition);
+  overflow: hidden;
+}
+/* Subtle decorative SVG motif (per Function Category), sitting behind the
+   icon/text as a low-opacity texture — pure vector, no image requests. */
+.theme-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--theme-pattern);
+  background-repeat: repeat;
+  pointer-events: none;
+}
+.theme-banner-icon,
+.theme-banner-text {
+  position: relative;
+  z-index: 1;
+}
+.theme-banner-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--theme-glow);
+  color: var(--theme-accent);
+  font-size: 1.35rem;
+}
+.theme-banner-text { min-width: 0; }
+.theme-banner-label {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--theme-accent);
+  letter-spacing: 0.01em;
+}
+.theme-banner-tagline {
+  font-size: 0.78rem;
+  color: var(--text3);
+  margin-top: 0.15rem;
+}
+
+@media (min-width: 640px) {
+  .theme-banner { padding: 1.6rem 1.9rem; }
+  .theme-banner-icon { width: 60px; height: 60px; font-size: 1.75rem; border-radius: 14px; }
+  .theme-banner-label { font-size: 1.4rem; }
+  .theme-banner-tagline { font-size: 0.85rem; }
+}
+
+/* ══════════════════════════════════════════
+   STUDIO OWNER DASHBOARD BANNER
+   Fixed premium camera/lighting identity (not per-category — see
+   STUDIO_DASHBOARD_THEME in js/themes.js). Same component shape as
+   .theme-banner, scoped to #panel-studio only.
+══════════════════════════════════════════ */
+#panel-studio {
+  --studio-accent: #2F6E56;
+  --studio-glow: rgba(47,110,86,0.25);
+  --studio-pattern: none;
+}
+.studio-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1rem;
+  border-radius: var(--radius-card);
+  background: linear-gradient(135deg, rgba(255,255,255,0.03), var(--studio-glow) 130%);
+  border: 1px solid var(--studio-glow);
+  box-shadow: 0 8px 28px -10px var(--studio-glow);
+  overflow: hidden;
+}
+.studio-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--studio-pattern);
+  background-repeat: repeat;
+  pointer-events: none;
+}
+.studio-banner-icon {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--studio-glow);
+  color: var(--studio-accent);
+  font-size: 1.35rem;
+}
+.studio-banner-text { position: relative; z-index: 1; min-width: 0; }
+.studio-banner-label {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--studio-accent);
+  letter-spacing: 0.01em;
+}
+.studio-banner-tagline {
+  font-size: 0.78rem;
+  color: var(--text3);
+  margin-top: 0.15rem;
+}
+@media (min-width: 640px) {
+  .studio-banner { padding: 1.6rem 1.9rem; }
+  .studio-banner-icon { width: 60px; height: 60px; font-size: 1.75rem; border-radius: 14px; }
+  .studio-banner-label { font-size: 1.4rem; }
+  .studio-banner-tagline { font-size: 0.85rem; }
+}

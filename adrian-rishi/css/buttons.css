@@ -1,0 +1,141 @@
+/* ============================================================
+   buttons.css
+   Auto-extracted from original inline <style> block.
+   No CSS rules were changed, renamed, or reordered within
+   this file relative to the original stylesheet.
+   ============================================================ */
+
+/* ══════════════════════════════════════════
+   BUTTONS
+══════════════════════════════════════════ */
+.btn-primary {
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius-btn);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  letter-spacing: -0.01em;
+  box-shadow: 0 4px 16px rgba(47,110,86,0.3);
+}
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(47,110,86,0.4);
+}
+.btn-primary:active { transform: translateY(0); }
+
+.btn-platform {
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius-btn);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 16px rgba(47,110,86,0.25);
+}
+.btn-platform:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(47,110,86,0.35);
+}
+.btn-platform:active { transform: translateY(0); }
+
+.btn-secondary {
+  padding: 0.7rem 1.25rem;
+  background: transparent;
+  color: var(--text2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-btn);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-secondary:hover {
+  background: var(--card-hover);
+  border-color: rgba(47,110,86,0.4);
+  color: var(--text);
+}
+
+.btn-danger {
+  padding: 0.45rem 0.9rem;
+  background: transparent;
+  color: var(--danger);
+  border: 1px solid rgba(239,68,68,0.3);
+  border-radius: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-danger:hover {
+  background: var(--danger);
+  color: white;
+  border-color: var(--danger);
+  box-shadow: 0 4px 12px rgba(239,68,68,0.3);
+}
+
+.btn-danger-solid {
+  padding: 0.4rem 0.9rem;
+  background: var(--danger);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--transition);
+  box-shadow: 0 4px 14px rgba(239,68,68,0.28);
+}
+.btn-danger-solid:hover {
+  background: #e04848;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(239,68,68,0.4);
+}
+.btn-danger-solid:active { transform: translateY(0); }
+
+.btn-small {
+  padding: 0.4rem 0.85rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--transition);
+}
+.btn-small:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn-small.platform {
+  background: var(--card-hover);
+  color: var(--text2);
+  border: 1px solid var(--border);
+}
+.btn-small.platform:hover {
+  background: var(--card);
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+

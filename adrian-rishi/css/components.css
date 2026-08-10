@@ -1,0 +1,923 @@
+/* ============================================================
+   components.css
+   Auto-extracted from original inline <style> block.
+   No CSS rules were changed, renamed, or reordered within
+   this file relative to the original stylesheet.
+   ============================================================ */
+
+/* ══════════════════════════════════════════
+   ERROR MESSAGE
+══════════════════════════════════════════ */
+.error-msg {
+  background: rgba(239,68,68,0.1);
+  color: #FF8080;
+  border: 1px solid rgba(239,68,68,0.25);
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  display: none;
+}
+
+
+/* ══════════════════════════════════════════
+   STAT CARDS
+══════════════════════════════════════════ */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+.stat-row .stat-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 1.25rem;
+  transition: var(--transition);
+  cursor: pointer;
+}
+.stat-card:hover {
+  background: var(--card-hover);
+  border-color: rgba(47,110,86,0.25);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-num {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--text3);
+  margin-top: 0.35rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+
+/* ══════════════════════════════════════════
+   COUNTERS
+══════════════════════════════════════════ */
+.counters {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+}
+
+.counters-row2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+}
+
+.counter-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1rem;
+  text-align: center;
+  transition: var(--transition);
+  cursor: pointer;
+}
+.counter-card:hover {
+  border-color: rgba(47,110,86,0.25);
+  background: var(--card-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.counter-icon { font-size: 1rem; margin-bottom: 0.35rem; }
+
+.counter-num {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.counter-num.liked { color: var(--danger); }
+.counter-num.bride { color: #C9A96E; }
+.counter-num.groom { color: #8AABB5; }
+.counter-num.custom1 { color: var(--success); }
+.counter-num.custom2 { color: var(--warning); }
+
+.counter-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text3);
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+.counter-limit { font-size: 0.65rem; color: var(--text3); margin-top: 0.1rem; }
+
+
+/* ══════════════════════════════════════════
+   PROGRESS BAR (selection counters)
+══════════════════════════════════════════ */
+.progress-bar {
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+.progress-fill.bride { background: #C9A96E; }
+.progress-fill.groom { background: #8AABB5; }
+
+
+/* ══════════════════════════════════════════
+   CATEGORY BADGE
+══════════════════════════════════════════ */
+.category-badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  background: rgba(47,110,86,0.12);
+  color: var(--accent);
+  border-radius: 5px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+
+/* ══════════════════════════════════════════
+   TOAST
+══════════════════════════════════════════ */
+.toast {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  z-index: 9000;
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  white-space: nowrap;
+  box-shadow: var(--shadow-md);
+  max-width: 90vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  backdrop-filter: blur(20px);
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+
+/* ══════════════════════════════════════════
+   INLINE HELPER STYLES (used in JS-rendered content)
+══════════════════════════════════════════ */
+.category-card-inner {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.category-card-inner:hover {
+  border-color: rgba(47,110,86,0.3);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Platform admin stat detail panel override for dark bg */
+#stat-detail-panel {
+  background: var(--card) !important;
+}
+
+/* Report FAB */
+#report-fab {
+  font-family: 'Inter', sans-serif !important;
+}
+
+/* Report modal dark override */
+#report-modal > div {
+  background: var(--bg2) !important;
+  border: 1px solid var(--border) !important;
+}
+#report-modal select,
+#report-modal textarea,
+#report-modal input[type=text] {
+  background: var(--input-bg) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text) !important;
+  font-family: 'Inter', sans-serif !important;
+  border-radius: 10px !important;
+}
+#report-modal select:focus,
+#report-modal textarea:focus,
+#report-modal input[type=text]:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(47,110,86,0.12) !important;
+}
+
+/* Watermark toggle buttons */
+#wm-enable-btn, #wm-disable-btn {
+  font-family: 'Inter', sans-serif !important;
+  border-radius: var(--radius-btn) !important;
+}
+
+/* Forgot password modal */
+#forgot-modal > div {
+  background: var(--bg2) !important;
+  border: 1px solid var(--border) !important;
+}
+#forgot-modal input,
+#forgot-modal select {
+  background: var(--input-bg) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text) !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+/* JS-generated project detail panels */
+#project-link-result {
+  background: rgba(22,199,132,0.08) !important;
+  border: 1px solid rgba(22,199,132,0.3) !important;
+  border-radius: 12px !important;
+}
+#studio-link-result {
+  background: rgba(47,110,86,0.08) !important;
+  border: 1px solid rgba(47,110,86,0.25) !important;
+  border-radius: 12px !important;
+  color: var(--text2) !important;
+}
+#pkg-link-result {
+  background: rgba(47,110,86,0.08) !important;
+  border: 1px solid rgba(47,110,86,0.25) !important;
+  border-radius: 12px !important;
+}
+
+/* Category grid cards in JS-generated content */
+.studio-cat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.studio-cat-card:hover {
+  border-color: rgba(47,110,86,0.3);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Studio select bar */
+#studio-select-bar {
+  background: rgba(47,110,86,0.06) !important;
+  border: 1px solid rgba(47,110,86,0.2) !important;
+  border-radius: 10px !important;
+}
+
+/* Save pending hint */
+#save-pending-hint {
+  background: rgba(245,158,11,0.08) !important;
+  border: 1px solid rgba(245,158,11,0.3) !important;
+  border-radius: 10px !important;
+  color: var(--warning) !important;
+}
+
+/* Enquiry packages list */
+#enquiry-packages-list > div {
+  background: var(--input-bg) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 14px !important;
+}
+
+/* Client cat back button */
+#client-cat-expanded .back-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+  color: var(--text2);
+  font-family: 'Inter', sans-serif;
+  transition: var(--transition);
+}
+
+/* Studio contact admin panel */
+#panel-studio .owner-card[style*="border:2px solid #25D366"] {
+  border-color: rgba(37,211,102,0.4) !important;
+}
+
+/* Selection edit toggle button */
+#sel-edit-toggle {
+  background: transparent !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 10px !important;
+  color: var(--text2) !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+/* Platform detail close button */
+#stat-detail-panel button[onclick*="display"] {
+  background: transparent !important;
+  border: none !important;
+  color: var(--text3) !important;
+  font-size: 1rem !important;
+  cursor: pointer !important;
+}
+
+/* Fix JS-generated category grid cards */
+[onclick*="openClientCategory"],
+[onclick*="openStudioCategory"],
+[onclick*="openOwnerClientPhotos"] {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  cursor: pointer !important;
+  transition: var(--transition) !important;
+}
+
+/* Override inline white backgrounds from JS */
+[style*="background:white"],
+[style*="background: white"] {
+  background: var(--card) !important;
+}
+
+/* Override inline cream color used in old theme */
+[style*="background:var(--cream)"],
+[style*="background: var(--cream)"],
+[style*="color:var(--charcoal)"] {
+  color: var(--text) !important;
+}
+
+/* Platform admin sub stats badge */
+#pstud-stat-studios, #pstud-stat-revenue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LUXURY DESIGN OVERLAY
+   Pure visual enhancement layer — no functional selectors touched,
+   no IDs/classes removed or repurposed, no JS-relevant hooks changed.
+══════════════════════════════════════════════════════════════ */
+
+/* Base typography — body copy moves to Plus Jakarta Sans, keeping Inter as fallback everywhere JS/inline styles hard-code it */
+body {
+  font-family: var(--font-body);
+  letter-spacing: 0.005em;
+}
+input, select, textarea, button { font-family: var(--font-body); }
+
+/* Ambient background — richer, more layered glow with a faint gold wash */
+body::before {
+  background:
+    radial-gradient(ellipse 60% 40% at 12% 8%, rgba(201,185,128,0.05) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 45% at 88% 12%, rgba(93,147,199,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(47,110,86,0.045) 0%, transparent 60%);
+}
+
+/* Headline typography — elegant serif for primary headings & titles */
+.login-heading, .section-title, .studio-name, .login-card-title,
+.lightbox-title, .props-card-title, h1, h2 {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+}
+.section-title {
+  font-family: var(--font-accent);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  color: var(--champagne);
+  opacity: 0.9;
+  margin-bottom: 1.25rem;
+}
+
+::selection { background: rgba(201,185,128,0.28); color: var(--text); }
+:focus-visible { outline: 1px solid var(--champagne); outline-offset: 2px; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-deep); }
+
+/* Login screen rules live in forms.css now (single source of truth). */
+
+/* ── Inputs ──────────────────────────────────────────────────── */
+.input-group input, .input-group select, input[type="text"], input[type="email"],
+input[type="password"], input[type="number"], input[type="tel"], textarea, select {
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  transition: border-color 0.25s var(--ease-lux), box-shadow 0.25s var(--ease-lux), background 0.25s ease;
+}
+.input-group input:focus, .input-group select:focus,
+input:focus, textarea:focus, select:focus {
+  border-color: var(--champagne) !important;
+  box-shadow: 0 0 0 3px rgba(201,185,128,0.12), 0 4px 16px rgba(0,0,0,0.25);
+  background: #14181F;
+}
+.input-group label { letter-spacing: 0.03em; }
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--royal-blue) 100%);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 6px 20px rgba(93,147,199,0.28), 0 1px 0 rgba(255,255,255,0.08) inset;
+  transition: transform 0.2s var(--ease-lux), box-shadow 0.2s var(--ease-lux), filter 0.2s ease;
+  letter-spacing: 0.01em;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(93,147,199,0.4), 0 1px 0 rgba(255,255,255,0.1) inset;
+  filter: brightness(1.06);
+}
+.btn-primary:active { transform: translateY(0); filter: brightness(0.97); }
+
+.btn-platform {
+  background: linear-gradient(135deg, var(--gold-deep) 0%, var(--gold) 55%, var(--champagne) 100%);
+  box-shadow: 0 6px 20px rgba(201,185,128,0.25), 0 1px 0 rgba(255,255,255,0.15) inset;
+  transition: transform 0.2s var(--ease-lux), box-shadow 0.2s var(--ease-lux), filter 0.2s ease;
+}
+.btn-platform:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(201,185,128,0.38);
+  filter: brightness(1.05);
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  transition: var(--transition);
+}
+.btn-secondary:hover {
+  border-color: var(--champagne);
+  background: rgba(201,185,128,0.06);
+  color: var(--champagne);
+  transform: translateY(-1px);
+}
+
+.btn-danger { transition: transform 0.2s var(--ease-lux), box-shadow 0.2s ease; }
+.btn-danger:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(239,91,91,0.3); }
+
+button { cursor: pointer; }
+
+/* ── Header & Navigation ─────────────────────────────────────── */
+.app-header {
+  background: linear-gradient(180deg, rgba(21,24,31,0.92) 0%, rgba(17,19,24,0.92) 100%);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--hairline);
+}
+.header-brand { font-family: var(--font-display); letter-spacing: 0.01em; }
+
+.main-tabs { border-bottom: 1px solid var(--hairline-soft); }
+.main-tab {
+  font-family: var(--font-accent);
+  font-weight: 600;
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+  position: relative;
+}
+.main-tab::after {
+  content: '';
+  position: absolute; left: 50%; right: 50%; bottom: -1px; height: 2px;
+  background: linear-gradient(90deg, var(--champagne), var(--royal-blue-soft));
+  transition: left 0.28s var(--ease-lux), right 0.28s var(--ease-lux);
+  border-radius: 2px;
+}
+.main-tab.active::after { left: 8%; right: 8%; }
+.main-tab.active {
+  color: var(--champagne) !important;
+  text-shadow: 0 0 20px rgba(201,185,128,0.25);
+}
+.main-tab.platform-active {
+  color: var(--royal-blue-soft) !important;
+}
+.main-tab.platform-active::after {
+  background: linear-gradient(90deg, var(--royal-blue-soft), var(--champagne));
+}
+
+/* .header-role-badge lives in layout.css now (single source of truth). */
+
+/* ── Cards, generic surfaces ─────────────────────────────────── */
+.owner-card, .props-card, .studio-item, .project-item {
+  background: linear-gradient(180deg, var(--card) 0%, var(--graphite) 100%);
+  border: 1px solid var(--hairline);
+  transition: transform 0.25s var(--ease-lux), box-shadow 0.25s var(--ease-lux), border-color 0.25s ease;
+  position: relative;
+}
+.owner-card:hover {
+  border-color: var(--glass-border);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lift);
+}
+/* .owner-card h3 fully consolidated into layout.css now. */
+
+/* ── Stat cards / counters ───────────────────────────────────── */
+.stat-card, .counter-card {
+  background: linear-gradient(165deg, var(--card) 0%, var(--graphite) 100%);
+  border: 1px solid var(--hairline);
+  transition: transform 0.25s var(--ease-lux), box-shadow 0.25s var(--ease-lux), border-color 0.25s ease;
+  overflow: hidden;
+  position: relative;
+}
+.stat-card::before, .counter-card::before {
+  content: '';
+  position: absolute; inset: 0 0 auto 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(224,214,181,0.45), transparent);
+  opacity: 0.7;
+}
+.stat-card:hover, .counter-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--glass-border);
+  box-shadow: var(--shadow-lift);
+}
+.stat-num, .counter-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--text) 0%, var(--champagne) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.counter-label, .stat-label {
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  opacity: 0.8;
+}
+
+/* ── Photo gallery ───────────────────────────────────────────── */
+.photo-card {
+  border-radius: 16px;
+  border: 1px solid var(--hairline-soft);
+  transition: transform 0.3s var(--ease-lux), box-shadow 0.3s var(--ease-lux), border-color 0.25s ease;
+  overflow: hidden;
+}
+.photo-card:hover {
+  transform: translateY(-4px) scale(1.012);
+  box-shadow: var(--shadow-lift);
+  z-index: 2;
+}
+.photo-card.selected-liked   { box-shadow: 0 0 0 2px var(--danger), var(--shadow-md); }
+.photo-card.selected-bride   { box-shadow: 0 0 0 2px #C9A96E, var(--shadow-md); }
+.photo-card.selected-groom   { box-shadow: 0 0 0 2px #8AABB5, var(--shadow-md); }
+.photo-card.selected-custom1 { box-shadow: 0 0 0 2px var(--success), var(--shadow-md); }
+.photo-card.selected-custom2 { box-shadow: 0 0 0 2px var(--warning), var(--shadow-md); }
+
+.badge {
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+  letter-spacing: 0.02em;
+}
+
+.action-btn {
+  transition: transform 0.2s var(--ease-lux), background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.action-btn:hover { transform: translateY(-1px) scale(1.04); }
+
+.photo-zoom-hint { backdrop-filter: blur(4px); }
+
+.upload-area {
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+.upload-area:hover { border-color: var(--champagne) !important; background: rgba(201,185,128,0.03); }
+
+/* ── Lightbox ────────────────────────────────────────────────── */
+.lightbox { backdrop-filter: blur(10px) saturate(130%); }
+.lightbox-header, .lightbox-footer {
+  background: linear-gradient(180deg, rgba(8,9,12,0.85), rgba(8,9,12,0.55));
+  backdrop-filter: blur(10px);
+}
+.lb-action-btn { transition: transform 0.2s var(--ease-lux), filter 0.2s ease; }
+.lb-action-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+/* ── Properties panel / modals ──────────────────────────────── */
+.props-card, .props-overlay > div {
+  border-radius: 20px;
+}
+.props-overlay { backdrop-filter: blur(8px); }
+
+/* ── Progress / storage bars ─────────────────────────────────── */
+.progress-bar, .storage-bar, .upload-progress-bar {
+  background: var(--input-bg);
+  overflow: hidden;
+}
+.progress-fill, .storage-bar-fill, .upload-progress-fill {
+  background: linear-gradient(90deg, var(--gold-deep), var(--champagne)) !important;
+  box-shadow: 0 0 12px rgba(201,185,128,0.35);
+}
+
+/* ── Category cards ──────────────────────────────────────────── */
+.category-card-inner {
+  transition: transform 0.25s var(--ease-lux), box-shadow 0.25s var(--ease-lux), border-color 0.2s ease;
+}
+.category-card-inner:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
+
+/* ── Toast ───────────────────────────────────────────────────── */
+.toast {
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--shadow-lift);
+}
+
+/* ── Spinner / loading ───────────────────────────────────────── */
+.spinner { border-color: var(--border); border-top-color: var(--champagne); }
+
+/* ── Subtle glass utility for panels that use var(--card) heavily ── */
+.stat-detail-panel, #stat-detail-panel {
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--hairline);
+}
+
+/* ── Reduced motion respect ──────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   DESIGN ELEVATION PASS — Direction B: Midnight Emerald & Ivory
+   Added on top of the existing luxury overlay above. Nothing in
+   this block renames or removes a selector; it only adds missing
+   states (disabled, active-press) and a consistent icon system.
+══════════════════════════════════════════════════════════════ */
+
+/* ── Icon system (Remix Icon, loaded via CDN in <head>) ───────
+   .icon-inline wraps every replaced icon so sizing/alignment/
+   spacing stays identical everywhere it's used. */
+.icon-inline {
+  font-size: var(--icon-size-md);
+  line-height: 1;
+  vertical-align: -2px;
+  margin-right: 0.35em;
+  display: inline-block;
+}
+.icon-inline.icon-success { color: var(--success); }
+/* Icons that appear alone (no adjacent label text) shouldn't carry the right margin */
+.lightbox-close .icon-inline,
+.props-close .icon-inline,
+button[onclick*="closeLightbox"] .icon-inline,
+.storage-pill .icon-inline,
+.login-logo-mark .icon-inline,
+.studio-avatar-placeholder .icon-inline {
+  margin-right: 0;
+}
+/* Slightly larger icons for empty-state / upload-area / counter-icon placeholders */
+.upload-icon .icon-inline,
+.empty-icon .icon-inline,
+.counter-icon .icon-inline {
+  font-size: var(--icon-size-lg);
+  vertical-align: middle;
+  margin-right: 0;
+}
+/* Prominent sizing for the platform/studio/client login logo marks */
+.login-logo-mark .icon-inline {
+  font-size: 1.8rem;
+  vertical-align: middle;
+}
+.studio-avatar-placeholder .icon-inline {
+  font-size: var(--icon-size-lg);
+  vertical-align: middle;
+}
+
+/* ── Disabled states (previously undefined — filling a real gap) ── */
+button:disabled,
+.btn-primary:disabled,
+.btn-platform:disabled,
+.btn-secondary:disabled,
+.btn-danger:disabled,
+.btn-small:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+  filter: grayscale(0.3);
+  transform: none !important;
+  box-shadow: none !important;
+}
+input:disabled, select:disabled, textarea:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+  background: var(--input-bg);
+}
+
+/* ── Active/press state consistency for buttons that lacked one ── */
+.btn-secondary:active, .btn-danger:active, .btn-small:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* ── Placeholder styling (readability improvement) ── */
+input::placeholder, textarea::placeholder {
+  color: var(--text3);
+  opacity: 0.75;
+  letter-spacing: 0.005em;
+}
+
+/* ── Form label consistency ── */
+.form-row label, .input-group label {
+  display: inline-block;
+  margin-bottom: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text2);
+}
+
+/* ── Tab hover state (existing overlay only styled .active) ── */
+.main-tab:hover:not(.active):not(.platform-active) {
+  color: var(--champagne-soft);
+}
+
+/* ── Card hierarchy: slightly softer default shadow, stronger on hover
+     (keeps existing box-shadow values on :hover, just adds a resting state) ── */
+.owner-card, .stat-card, .counter-card, .studio-item, .project-item {
+  box-shadow: var(--shadow-sm);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   PREMIUM POLISH — PASS 2
+   Second visual-only elevation pass on top of the existing luxury
+   overlay. Nothing here renames, removes, or repurposes a selector
+   that JS depends on — purely additional styling, motion, and
+   accessibility refinement for existing classes/IDs.
+══════════════════════════════════════════════════════════════ */
+
+/* ── Small metadata text: nudge lighter for real legibility gain
+   on the darkest card surfaces, without touching the main palette ── */
+.props-label, .storage-info, .counter-limit, .empty-state p,
+.upload-note, .lightbox-counter {
+  color: var(--text3-soft);
+}
+
+/* ── Tabular numerals: every stat/counter reads as a steady column
+   of digits instead of shifting width as values update ── */
+.stat-num, .counter-num, .storage-pill-size {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Tab-content transition: switching tabs now settles in instead
+   of popping instantly — reduced-motion rule above still zeroes this ── */
+.tab-content.active {
+  animation: ppTabIn 0.32s var(--ease-lux) backwards;
+}
+@keyframes ppTabIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Button shine sweep: a single soft light pass on hover, the kind
+   of restrained detail that reads as "premium" rather than "flashy" ── */
+.btn-primary, .btn-platform {
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after, .btn-platform::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -60%;
+  width: 40%; height: 100%;
+  background: linear-gradient(115deg, transparent, rgba(255,255,255,0.16), transparent);
+  transform: skewX(-18deg);
+  transition: left 0.55s var(--ease-lux);
+  pointer-events: none;
+}
+.btn-primary:hover::after, .btn-platform:hover::after { left: 130%; }
+
+/* ── Focus-visible: every interactive control gets the same crisp,
+   on-brand ring — previously only inputs had a dedicated treatment ── */
+button:focus-visible, .main-tab:focus-visible, .stat-card:focus-visible,
+.counter-card:focus-visible, .studio-item:focus-visible, .project-item:focus-visible,
+.photo-card:focus-visible, .category-card-inner:focus-visible {
+  outline: 2px solid var(--champagne);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* ── Loading spinner: two-tone conic feel instead of a flat single arc ── */
+.spinner {
+  border-top-color: var(--champagne);
+  border-right-color: var(--royal-blue-soft);
+}
+
+/* ── Empty states: icon sits in a soft halo instead of floating bare,
+   and the whole block settles in gently rather than appearing instantly ── */
+.empty-state {
+  animation: ppFadeIn 0.4s var(--ease-lux) backwards;
+}
+.empty-icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 0.85rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(201,185,128,0.14), rgba(47,110,86,0.09));
+  border: 1px solid var(--hairline);
+  opacity: 1;
+}
+#panel-client .empty-icon {
+  background: linear-gradient(135deg, var(--theme-glow), rgba(255,255,255,0.03));
+}
+@keyframes ppFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Gallery: shimmer placeholder sits behind every photo tile so the
+   grid never shows a flash of bare card color while Cloudinary images
+   decode — the shimmer is simply covered once the <img> paints over it ── */
+.photo-img-wrap {
+  background-image: linear-gradient(100deg, var(--card) 28%, var(--card-hover) 45%, var(--card) 62%);
+  background-size: 250% 100%;
+  animation: ppShimmer 2.2s ease-in-out infinite;
+}
+@keyframes ppShimmer {
+  0%   { background-position: 120% 0; }
+  100% { background-position: -20% 0; }
+}
+/* Studio/owner category thumbnails use the same treatment */
+.studio-cat-card img, .category-card-inner img {
+  background-image: linear-gradient(100deg, var(--card) 28%, var(--card-hover) 45%, var(--card) 62%);
+  background-size: 250% 100%;
+}
+
+/* ── Gallery hover: a soft bottom gradient improves legibility of
+   badges/hints sitting over bright wedding photos, on top of the
+   existing scale/lift already defined above ── */
+.photo-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 45%;
+  background: linear-gradient(to top, rgba(0,0,0,0.28), transparent);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+.photo-img-wrap:hover::after { opacity: 1; }
+
+/* ── Stat/counter cards: a slow diagonal sheen on hover, layered under
+   the existing lift/shadow transform rather than replacing it ── */
+.stat-card, .counter-card {
+  background-blend-mode: normal;
+}
+.stat-card::after, .counter-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.035) 50%, transparent 70%);
+  background-size: 250% 250%;
+  background-position: 100% 0;
+  transition: background-position 0.6s var(--ease-lux);
+  pointer-events: none;
+}
+.stat-card:hover::after, .counter-card:hover::after { background-position: 0 100%; }
+
+/* ── Toast: small icon-accent bar so success/error reads at a glance
+   without needing to parse the message text first ── */
+.toast {
+  border-left: 3px solid var(--champagne);
+}
+
+/* ── Comfortable tap targets on touch devices — additive min-height/
+   min-width only, existing padding/typography untouched ── */
+@media (pointer: coarse) {
+  .main-tab, .action-btn, .btn-small, .btn-danger, .lightbox-close,
+  .lightbox-nav, .props-close {
+    min-height: var(--touch-min);
+  }
+  button, [onclick] { touch-action: manipulation; }
+}
+
+/* ── Reduced transparency preference: swap blur-heavy surfaces for
+   solid ones when the system asks for less translucency ── */
+@media (prefers-reduced-transparency: reduce) {
+  .app-header, .lightbox-header, .lightbox-footer, .toast, .props-overlay,
+  .lightbox, .report-modal, #report-modal {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+

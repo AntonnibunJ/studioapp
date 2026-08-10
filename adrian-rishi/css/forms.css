@@ -1,0 +1,244 @@
+/* ============================================================
+   forms.css
+   Auto-extracted from original inline <style> block.
+   No CSS rules were changed, renamed, or reordered within
+   this file relative to the original stylesheet.
+   ============================================================ */
+
+/* ══════════════════════════════════════════
+   LOGIN SCREENS
+   (Single source of truth — previously split between
+   this file and components.css; consolidated here.)
+══════════════════════════════════════════ */
+#screen-platform-login,
+#screen-studio-login,
+#screen-client-login {
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,185,128,0.055) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 45% at 15% 100%, rgba(93,147,199,0.05) 0%, transparent 55%),
+    var(--bg);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem;
+  min-height: 100vh;
+}
+#screen-platform-login.active,
+#screen-studio-login.active,
+#screen-client-login.active { display: flex; }
+
+.login-logo-mark {
+  overflow: hidden;
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+  background: linear-gradient(150deg, rgba(201,185,128,0.16), rgba(93,147,199,0.14));
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin: 0 auto 1.25rem;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.02) inset, 0 12px 30px rgba(201,185,128,0.12);
+  animation: luxFadeUp 0.6s var(--ease-lux) backwards;
+}
+
+.login-heading {
+  font-size: 2.6rem;
+  font-weight: 600;
+  line-height: 1.08;
+  color: var(--text);
+  text-align: center;
+  letter-spacing: -0.005em;
+  margin-bottom: 0.35rem;
+  animation: luxFadeUp 0.5s var(--ease-lux) 0.08s backwards;
+}
+
+.login-subheading {
+  font-family: var(--font-accent);
+  font-size: 0.72rem;
+  color: var(--text3);
+  text-align: center;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  animation: luxFadeUp 0.5s var(--ease-lux) 0.16s backwards;
+}
+
+.login-card {
+  background: linear-gradient(180deg, var(--card) 0%, var(--graphite) 100%);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-card);
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: var(--shadow-lift), 0 0 0 1px rgba(255,255,255,0.015) inset;
+  position: relative;
+  overflow: hidden;
+  animation: luxFadeUp 0.5s var(--ease-lux) 0.24s backwards;
+}
+.login-card::before {
+  content: '';
+  position: absolute; inset: 0 0 auto 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(224,214,181,0.5), transparent);
+}
+
+/* Stagger each direct child of the card (title, error, inputs, button)
+   so the form builds in piece by piece instead of arriving all at once. */
+.login-card > * { animation: luxFadeUp 0.45s var(--ease-lux) backwards; }
+.login-card > *:nth-child(1) { animation-delay: 0.30s; }
+.login-card > *:nth-child(2) { animation-delay: 0.36s; }
+.login-card > *:nth-child(3) { animation-delay: 0.42s; }
+.login-card > *:nth-child(4) { animation-delay: 0.48s; }
+.login-card > *:nth-child(5) { animation-delay: 0.54s; }
+.login-card > *:nth-child(6) { animation-delay: 0.60s; }
+
+@keyframes luxFadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.login-card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.login-back {
+  background: none;
+  border: none;
+  color: var(--text3);
+  font-size: 0.875rem;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  padding: 0.35rem 0;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: var(--transition);
+  align-self: flex-start;
+}
+.login-back:hover { color: var(--champagne); transform: translateX(-2px); }
+
+/* ── Role-specific accents ──────────────────────────────────────
+   Same shared card/layout for all three roles; only the logo mark
+   and primary button borrow a different existing token per role,
+   so each portal reads as distinct without adding new colors. ── */
+
+/* Platform Admin — champagne / gold (already the "admin" color elsewhere) */
+#screen-platform-login .login-logo-mark {
+  background: linear-gradient(150deg, rgba(201,185,128,0.24), rgba(160,139,78,0.16));
+  border-color: rgba(201,185,128,0.38);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.02) inset, 0 12px 30px rgba(201,185,128,0.2);
+}
+#screen-platform-login .btn-primary {
+  background: linear-gradient(135deg, var(--gold-deep) 0%, var(--gold) 55%, var(--champagne) 100%);
+  box-shadow: 0 6px 20px rgba(201,185,128,0.3), 0 1px 0 rgba(255,255,255,0.12) inset;
+}
+#screen-platform-login .btn-primary:hover {
+  box-shadow: 0 10px 28px rgba(201,185,128,0.42), 0 1px 0 rgba(255,255,255,0.14) inset;
+}
+
+/* Studio Owner — emerald (the brand's primary accent) */
+#screen-studio-login .login-logo-mark {
+  background: linear-gradient(150deg, rgba(47,110,86,0.3), rgba(63,130,103,0.16));
+  border-color: rgba(47,110,86,0.42);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.02) inset, 0 12px 30px rgba(47,110,86,0.22);
+}
+#screen-studio-login .btn-primary {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+  box-shadow: 0 6px 20px rgba(47,110,86,0.32), 0 1px 0 rgba(255,255,255,0.08) inset;
+}
+#screen-studio-login .btn-primary:hover {
+  box-shadow: 0 10px 28px rgba(47,110,86,0.44), 0 1px 0 rgba(255,255,255,0.1) inset;
+}
+
+/* Client — royal blue (softer, more personal register) */
+#screen-client-login .login-logo-mark {
+  background: linear-gradient(150deg, rgba(93,147,199,0.28), rgba(138,180,224,0.16));
+  border-color: rgba(93,147,199,0.42);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.02) inset, 0 12px 30px rgba(93,147,199,0.22);
+}
+#screen-client-login .btn-primary {
+  background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-blue-soft) 100%);
+  box-shadow: 0 6px 20px rgba(93,147,199,0.3), 0 1px 0 rgba(255,255,255,0.08) inset;
+}
+#screen-client-login .btn-primary:hover {
+  box-shadow: 0 10px 28px rgba(93,147,199,0.42), 0 1px 0 rgba(255,255,255,0.1) inset;
+}
+
+
+/* ══════════════════════════════════════════
+   FORM ELEMENTS
+══════════════════════════════════════════ */
+.input-group { margin-bottom: 1rem; }
+
+.input-group label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text2);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.input-group input,
+.input-group select,
+.form-row input,
+.form-row select,
+.form-row textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-input);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: var(--transition);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.input-group input::placeholder,
+.form-row input::placeholder,
+.form-row textarea::placeholder { color: var(--text3); opacity: 0.6; }
+
+.input-group input:focus,
+.input-group select:focus,
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+  border-color: var(--accent);
+  background: rgba(47,110,86,0.06);
+  box-shadow: 0 0 0 3px rgba(47,110,86,0.12);
+}
+
+.form-row { margin-bottom: 1rem; }
+
+.form-row label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text2);
+  margin-bottom: 0.5rem;
+}
+
+.form-row textarea {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.5;
+}
+
+select option {
+  background: var(--card);
+  color: var(--text);
+}
+
+

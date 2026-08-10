@@ -1,0 +1,13 @@
+/* ============================================================
+   admin.css
+   Auto-extracted from original inline <style> block.
+   No CSS rules were changed, renamed, or reordered within
+   this file relative to the original stylesheet.
+   ============================================================ */
+
+/* No platform-admin-only CSS rules existed in the original
+   stylesheet as a separate block -- admin screens reuse the
+   same .stat-card, .studio-list, .card etc. classes defined
+   in layout.css/components.css. This file is kept as a home
+   for any FUTURE admin-only styling so the folder structure
+   stays ready to scale, without inventing new rules now. */

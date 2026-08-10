@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rishiani Studio Flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Syne:wght@600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/forms.css">
+<link rel="stylesheet" href="css/buttons.css">
+<link rel="stylesheet" href="css/gallery.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/admin.css">
+<link rel="stylesheet" href="css/themes.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     SCREEN 1a: PLATFORM ADMIN LOGIN
+     ══════════════════════════════════════════ -->
+<div id="screen-platform-login" class="active">
+  <div class="login-logo-mark" id="hub-logo-display"><i class="ri-vip-crown-2-line icon-inline"></i></div>
+  <div class="login-heading" id="plat-login-logo">Rishiani Studio Flow</div>
+  <div class="login-subheading">Platform Administration</div>
+  <div class="login-card">
+    <div class="login-card-title">Admin Sign In</div>
+    <div class="error-msg" id="plat-error"></div>
+    <div class="input-group">
+      <label>Username</label>
+      <input type="text" id="plat-username" autocomplete="off" autocorrect="off" placeholder="Enter username" />
+    </div>
+    <div class="input-group">
+      <label>Password</label>
+      <input type="password" id="plat-password" autocomplete="off" placeholder="••••••••" />
+    </div>
+    <button class="btn-primary" onclick="platformLogin()">Sign In</button>
+    <p style="font-size:0.78rem;color:var(--text3);text-align:center;margin-top:1.25rem;cursor:pointer;" onclick="openForgotPassword()">Forgot password? Reset via email or phone</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SCREEN 1b: STUDIO OWNER LOGIN
+     ══════════════════════════════════════════ -->
+<div id="screen-studio-login">
+  <div class="login-logo-mark" id="studio-login-logo-mark"><i class="ri-camera-line icon-inline"></i></div>
+  <div class="login-heading" id="studio-login-logo-text">Studio Sign In</div>
+  <div class="login-subheading" id="studio-login-sub">Studio Owner Portal</div>
+  <div class="login-card">
+    <div class="login-card-title">Studio Sign In</div>
+    <div class="error-msg" id="studio-error"></div>
+    <div class="input-group">
+      <label>Studio Username</label>
+      <input type="text" id="studio-username" autocomplete="off" autocorrect="off" placeholder="Your username" oninput="previewStudioLoginBranding(this.value)" onblur="previewStudioLoginBranding(this.value)" />
+    </div>
+    <div class="input-group">
+      <label>Password</label>
+      <input type="password" id="studio-password" autocomplete="off" placeholder="••••••••" />
+    </div>
+    <button class="btn-primary" onclick="studioLogin()">Sign In</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SCREEN 1c: CLIENT LOGIN
+     ══════════════════════════════════════════ -->
+<div id="screen-client-login">
+  <div class="login-logo-mark" id="client-login-logo-mark"><i class="ri-heart-fill icon-inline"></i></div>
+  <div class="login-heading" id="client-login-logo-text">Client Access</div>
+  <div class="login-subheading" id="client-login-sub">View your wedding photos</div>
+  <div class="login-card">
+    <div class="login-card-title">Client Access</div>
+    <div class="error-msg" id="client-error"></div>
+    <div class="input-group">
+      <label>Your Access Code</label>
+      <input type="text" id="client-code" autocomplete="off" autocorrect="off" placeholder="e.g. RAVI2024" style="text-transform:uppercase;" oninput="previewClientLoginBranding(this.value)" onblur="previewClientLoginBranding(this.value)" />
+    </div>
+    <button class="btn-primary" onclick="clientLogin()">View My Photos</button>
+    <p style="font-size:0.78rem;color:var(--text3);text-align:center;margin-top:1.25rem;">Access code is provided by your photographer</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SCREEN 2: MAIN APP
+     ══════════════════════════════════════════ -->
+<div id="screen-app">
+
+  <!-- Header -->
+  <div class="app-header" id="app-header">
+    <div class="header-left">
+      <div class="header-logo-placeholder" id="app-logo-display">✦</div>
+      <div>
+        <div class="header-brand" id="app-brand-name">Studio</div>
+        <div class="header-role-badge" id="app-role-badge">Owner</div>
+      </div>
+    </div>
+    <div class="header-right" id="header-right">
+      <div class="user-badge studio-mini-badge" id="client-studio-badge" style="display:none;"></div>
+      <div class="header-right-row">
+        <div class="user-badge" id="user-badge"></div>
+        <button class="btn-logout" onclick="logout()">Sign Out</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLATFORM ADMIN PANEL -->
+  <div id="panel-platform" style="display:none; flex:1; overflow:hidden; flex-direction:column;">
+    <div class="main-tabs">
+      <div class="main-tab platform-active" onclick="showTab('platform','dashboard')">Dashboard</div>
+      <div class="main-tab" onclick="showTab('platform','studios')">Studios</div>
+      <div class="main-tab" onclick="showTab('platform','plans')">Plans</div>
+      <div class="main-tab" onclick="showTab('platform','settings')">Settings</div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="ptab-dashboard" class="tab-content active">
+      <div class="section-title">Platform Overview</div>
+      <div class="stat-row">
+        <div class="stat-card" onclick="openStatDetail('studios')">
+          <div class="stat-num" id="stat-studios">0</div>
+          <div class="stat-label">Studios</div>
+          <div style="font-size:0.7rem;color:var(--accent);margin-top:0.5rem;font-weight:500;">View details <i class="ri-arrow-right-line icon-inline"></i></div>
+        </div>
+        <div class="stat-card" onclick="openStatDetail('revenue')">
+          <div class="stat-num" id="stat-revenue">₹0</div>
+          <div class="stat-label">Est. Monthly Revenue</div>
+          <div style="font-size:0.7rem;color:var(--accent);margin-top:0.5rem;font-weight:500;">View breakdown <i class="ri-arrow-right-line icon-inline"></i></div>
+        </div>
+        <div class="stat-card" onclick="openStatDetail('total-revenue')">
+          <div class="stat-num" id="stat-total-revenue">₹0</div>
+          <div class="stat-label">Total Revenue (All-Time)</div>
+          <div style="font-size:0.7rem;color:var(--accent);margin-top:0.5rem;font-weight:500;">View breakdown <i class="ri-arrow-right-line icon-inline"></i></div>
+        </div>
+      </div>
+
+      <!-- Stat Detail Panel -->
+      <div id="stat-detail-panel" style="display:none;" class="owner-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+          <h3 id="stat-detail-title" style="margin:0;font-size:1rem;font-weight:600;color:var(--text);"></h3>
+          <button onclick="document.getElementById('stat-detail-panel').style.display='none'" style="background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--text3);"><i class="ri-close-line icon-inline"></i></button>
+        </div>
+        <div id="stat-detail-content"></div>
+      </div>
+
+      <div class="owner-card">
+        <h3>Recent Studios</h3>
+        <div id="recent-studios-list"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+      </div>
+    </div>
+
+    <!-- Studios Management -->
+    <div id="ptab-studios" class="tab-content">
+      <div class="section-title">Studio Management</div>
+
+      <div class="owner-card">
+        <h3>Add New Studio</h3>
+        <div class="form-row">
+          <label>Studio Name</label>
+          <input type="text" id="new-studio-name" autocomplete="off" placeholder="e.g. Raj Photography" />
+        </div>
+        <div class="form-row">
+          <label>Studio Login Code <span style="font-size:0.72rem;color:var(--text3);">(unique ID for their login)</span></label>
+          <input type="text" id="new-studio-code" autocomplete="off" placeholder="e.g. RAJPHOTO" style="text-transform:uppercase;" />
+        </div>
+        <div class="form-row">
+          <label>Password</label>
+          <input type="password" id="new-studio-pass" autocomplete="off" placeholder="Set a password for them" />
+        </div>
+        <div class="form-row">
+          <label>Studio Owner Phone / WhatsApp <span style="font-size:0.72rem;color:var(--text3);">(with country code, e.g. +919876543210)</span></label>
+          <input type="tel" id="new-studio-whatsapp" autocomplete="off" placeholder="e.g. +919876543210" />
+        </div>
+        <div class="form-row">
+          <label>Studio Owner Address</label>
+          <input type="text" id="new-studio-address" autocomplete="off" placeholder="e.g. 12 Beach Road, Kanyakumari, TN" />
+        </div>
+        <div class="form-row">
+          <label>Studio Owner Email</label>
+          <input type="email" id="new-studio-email" autocomplete="off" placeholder="e.g. studio@email.com" />
+        </div>
+        <div class="form-row">
+          <label>Subscription Plan <span style="font-size:0.72rem;color:var(--text3);">(optional — activates immediately if selected)</span></label>
+          <select id="new-studio-plan">
+            <option value="">No plan (assign later)</option>
+          </select>
+        </div>
+
+        <button class="btn-platform" onclick="createStudio()">Add Studio</button>
+
+        <div id="studio-link-result" style="display:none;margin-top:1.25rem;padding:1rem 1.25rem;font-size:0.85rem;">
+          <div style="font-weight:600;margin-bottom:0.4rem;color:var(--success);"><i class="ri-checkbox-circle-fill icon-inline icon-success"></i> Studio created! Share this login link:</div>
+          <div id="studio-link-text" style="word-break:break-all;color:var(--accent);font-family:monospace;font-size:0.78rem;margin-bottom:0.65rem;"></div>
+          <button class="btn-small platform" onclick="copyStudioLink()"><i class="ri-file-copy-line icon-inline"></i> Copy Link</button>
+        </div>
+      </div>
+
+      <!-- All Studios / Subscribers -->
+      <div class="owner-card">
+        <h3>All Studios</h3>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.9rem;">
+          <input type="text" id="studio-search" placeholder="Search by name or code…" oninput="loadStudiosList()" style="flex:1;min-width:150px;" />
+          <select id="studio-status-filter" onchange="loadStudiosList()">
+            <option value="all">All Statuses</option>
+            <option value="active">Active</option>
+            <option value="expired">Expired</option>
+            <option value="none">No Plan</option>
+          </select>
+          <button class="btn-small platform" onclick="exportSubscribersCSV()"><i class="ri-download-2-line icon-inline"></i> Export CSV</button>
+        </div>
+        <div id="studios-list"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+      </div>
+
+      <!-- Edit Studio Modal (inline) -->
+      <div id="edit-studio-modal" style="display:none;" class="owner-card">
+        <h3>Edit Studio</h3>
+        <input type="hidden" id="edit-studio-code-ref" />
+        <div class="form-row">
+          <label>Studio Display Name</label>
+          <input type="text" id="edit-studio-display-name" autocomplete="off" />
+        </div>
+        <div class="form-row">
+          <label>New Password <span style="font-size:0.72rem;color:var(--text3);">(leave blank to keep current)</span></label>
+          <input type="password" id="edit-studio-password" autocomplete="off" placeholder="••••••••" />
+        </div>
+        <div style="display:flex;gap:0.65rem;margin-top:0.5rem;">
+          <button class="btn-platform" style="flex:1;" onclick="saveEditStudio()">Save Changes</button>
+          <button class="btn-secondary" style="flex:1;" onclick="document.getElementById('edit-studio-modal').style.display='none'">Cancel</button>
+        </div>
+
+        <div style="border-top:1px solid var(--border);margin-top:1.25rem;padding-top:1.1rem;">
+          <h3 style="margin-bottom:0.8rem;">Subscription</h3>
+          <div id="edit-studio-sub-summary" style="font-size:0.85rem;color:var(--text2);margin-bottom:0.9rem;"></div>
+
+          <div class="form-row">
+            <label>Assign / Change Plan</label>
+            <select id="edit-studio-sub-plan"></select>
+          </div>
+          <button class="btn-platform" style="width:100%;margin-bottom:0.7rem;" onclick="adminApplyPlanFromEdit()">Activate Selected Plan Now</button>
+
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+            <button class="btn-small platform" onclick="adminExtendSubscription(document.getElementById('edit-studio-code-ref').value, 30)">+30 days</button>
+            <button class="btn-small platform" onclick="adminExtendSubscription(document.getElementById('edit-studio-code-ref').value, 7)">+7 days</button>
+            <button class="btn-small" style="background:var(--soft-gray);" onclick="adminPauseSubscription(document.getElementById('edit-studio-code-ref').value)"><i class="ri-pause-circle-line icon-inline"></i> Pause</button>
+            <button class="btn-small" style="background:var(--success);" onclick="adminResumeSubscription(document.getElementById('edit-studio-code-ref').value)"><i class="ri-play-circle-line icon-inline"></i> Resume</button>
+            <button class="btn-small" style="background:var(--danger);" onclick="adminSetSubscriptionStatus(document.getElementById('edit-studio-code-ref').value,'suspended')"><i class="ri-forbid-line icon-inline"></i> Suspend</button>
+            <button class="btn-small" style="background:var(--success);" onclick="adminSetSubscriptionStatus(document.getElementById('edit-studio-code-ref').value,'active')"><i class="ri-checkbox-circle-fill icon-inline icon-success"></i> Reactivate</button>
+          </div>
+
+          <div style="margin-top:1rem;">
+            <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text3);margin-bottom:0.4rem;">Payment History</div>
+            <div id="edit-studio-payment-history" style="font-size:0.78rem;color:var(--text2);"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Platform Settings -->
+    <div id="ptab-settings" class="tab-content">
+      <div class="section-title">Platform Settings</div>
+
+      <div class="owner-card">
+        <h3>Platform Branding</h3>
+        <div class="form-row">
+          <label>Platform / Company Name</label>
+          <input type="text" id="platform-company-name" autocomplete="off" placeholder="e.g. StudioFlow" />
+        </div>
+        <div class="form-row">
+          <label>Logo <span style="font-size:0.72rem;color:var(--text3);">(shown on login screen)</span></label>
+          <div class="logo-upload-area" onclick="document.getElementById('platform-logo-input').click()">
+            <img id="platform-logo-preview" class="logo-preview" style="display:none;" />
+            <div id="platform-logo-placeholder">
+              <div style="font-size:1.5rem;"><i class="ri-camera-line icon-inline"></i></div>
+              <div class="logo-upload-hint">Tap to upload your logo</div>
+            </div>
+          </div>
+          <input type="file" id="platform-logo-input" accept="image/*" onchange="handlePlatformLogo(event)" style="display:none;" />
+        </div>
+        <div class="form-row">
+          <label>Admin Username</label>
+          <input type="text" id="platform-admin-user" autocomplete="off" />
+        </div>
+        <div class="form-row">
+          <label>Admin Password</label>
+          <input type="password" id="platform-admin-pass" autocomplete="off" placeholder="Change password" />
+        </div>
+        <button class="btn-platform" onclick="savePlatformSettings()">Save Settings</button>
+      </div>
+
+    </div>
+
+    <!-- Subscription Plan Manager -->
+    <div id="ptab-plans" class="tab-content">
+      <div class="section-title">Subscription Plans</div>
+
+      <div class="owner-card">
+        <h3>Create New Plan</h3>
+        <div class="form-row">
+          <label>Plan Name</label>
+          <input type="text" id="new-plan-name" placeholder="e.g. Monthly" />
+        </div>
+        <div class="form-row">
+          <label>Duration (days)</label>
+          <input type="number" id="new-plan-duration" placeholder="e.g. 30" />
+        </div>
+        <div class="form-row">
+          <label>Price</label>
+          <input type="number" id="new-plan-price" placeholder="e.g. 999" />
+        </div>
+        <div class="form-row">
+          <label>Currency</label>
+          <input type="text" id="new-plan-currency" value="INR" />
+        </div>
+        <div class="form-row">
+          <label>Discount %</label>
+          <input type="number" id="new-plan-discount" value="0" />
+        </div>
+        <div class="form-row">
+          <label>Offer Text <span style="font-size:0.72rem;color:var(--text3);">(optional, e.g. "Launch offer")</span></label>
+          <input type="text" id="new-plan-offer" placeholder="" />
+        </div>
+        <div class="form-row">
+          <label>Description</label>
+          <input type="text" id="new-plan-description" placeholder="Shown to studio owners" />
+        </div>
+        <div class="form-row">
+          <label>Badges</label>
+          <div style="display:flex;gap:1rem;">
+            <label style="display:flex;align-items:center;gap:0.4rem;font-size:0.85rem;font-weight:400;"><input type="checkbox" id="new-plan-popular" /> Popular</label>
+            <label style="display:flex;align-items:center;gap:0.4rem;font-size:0.85rem;font-weight:400;"><input type="checkbox" id="new-plan-recommended" /> Recommended</label>
+          </div>
+        </div>
+        <button class="btn-platform" onclick="handleCreatePlan()">Create Plan</button>
+      </div>
+
+      <div class="owner-card">
+        <h3>All Plans</h3>
+        <div id="plan-manager-list"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STUDIO OWNER PANEL -->
+  <div id="panel-studio" style="display:none; flex-direction:column;">
+    <div class="studio-banner" id="studio-dashboard-banner">
+      <div class="studio-banner-icon"><i class="ri-camera-3-line"></i></div>
+      <div class="studio-banner-text">
+        <div class="studio-banner-label" id="studio-dashboard-banner-label">Studio Dashboard</div>
+        <div class="studio-banner-tagline">Capturing Every Moment, Beautifully</div>
+      </div>
+    </div>
+    <div class="main-tabs">
+      <div class="main-tab active" onclick="showTab('studio','settings')">My Studio</div>
+      <div class="main-tab" onclick="showTab('studio','subscription')">Subscription</div>
+      <div class="main-tab" onclick="showTab('studio','projects')">Projects</div>
+      <div class="main-tab" onclick="showTab('studio','upload')">Upload</div>
+      <div class="main-tab" onclick="showTab('studio','photos')">My Photos</div>
+      <div class="main-tab" onclick="showTab('studio','selections')">Client Picks</div>
+      <div class="main-tab" id="tab-enquiry-nav" onclick="showTab('studio','enquiry')" style="display:none;"><i class="ri-archive-line icon-inline"></i> Enquiry</div>
+      <div class="main-tab" id="tab-digital-nav" onclick="showTab('studio','digital')" style="display:none;"><i class="ri-mail-line icon-inline"></i> Digital</div>
+    </div>
+
+    <!-- Projects -->
+    <div id="stab-projects" class="tab-content">
+      <div class="section-title">Wedding Projects</div>
+
+      <div class="owner-card">
+        <h3>Create New Project</h3>
+        <div class="form-row">
+          <label>Couple / Project Name</label>
+          <input type="text" id="project-name" autocomplete="off" placeholder="e.g. Ravi &amp; Priya Wedding" />
+        </div>
+        <div class="form-row">
+          <label>Function Category <span style="font-size:0.72rem;color:var(--text3);">(required — sets the gallery's theme)</span></label>
+          <select id="project-category" onchange="toggleCustomCategoryInput('project-category','project-category-custom')">
+            <option value="">— Select category —</option>
+            <option value="Wedding">Wedding</option>
+            <option value="Engagement">Engagement</option>
+            <option value="Holy Communion">Holy Communion</option>
+            <option value="Baptism">Baptism</option>
+            <option value="Birthday">Birthday</option>
+            <option value="Baby Shower">Baby Shower</option>
+            <option value="Maternity">Maternity</option>
+            <option value="Newborn">Newborn</option>
+            <option value="Pre-Wedding">Pre-Wedding</option>
+            <option value="Post-Wedding">Post-Wedding</option>
+            <option value="Reception">Reception</option>
+            <option value="Housewarming">Housewarming</option>
+            <option value="Graduation">Graduation</option>
+            <option value="Corporate Event">Corporate Event</option>
+            <option value="Fashion Shoot">Fashion Shoot</option>
+            <option value="Portfolio Shoot">Portfolio Shoot</option>
+            <option value="Family Shoot">Family Shoot</option>
+            <option value="Festival">Festival</option>
+            <option value="Anniversary">Anniversary</option>
+            <option value="Other">Other (Custom)</option>
+          </select>
+          <input type="text" id="project-category-custom" autocomplete="off" placeholder="Enter custom category name" style="display:none;margin-top:0.5rem;" />
+        </div>
+        <div class="form-row">
+          <label>Wedding Date</label>
+          <input type="date" id="project-date" autocomplete="off" />
+        </div>
+        <div class="form-row">
+          <label>Wedding Place</label>
+          <input type="text" id="project-place" autocomplete="off" placeholder="e.g. Kanyakumari, Tamil Nadu" />
+        </div>
+        <div class="form-row">
+          <label>Client Access Code <span style="font-size:0.72rem;color:var(--text3);">(clients use this to log in)</span></label>
+          <input type="text" id="project-code" autocomplete="off" placeholder="e.g. RAVI2024" style="text-transform:uppercase;" />
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+          <div class="form-row" style="margin-bottom:0;">
+            <label>Bride Photo Limit</label>
+            <input type="number" id="project-bride-limit" autocomplete="off" placeholder="250" min="1" max="2000" value="250" />
+          </div>
+          <div class="form-row" style="margin-bottom:0;">
+            <label>Groom Photo Limit</label>
+            <input type="number" id="project-groom-limit" autocomplete="off" placeholder="250" min="1" max="2000" value="250" />
+          </div>
+        </div>
+        <div style="font-size:0.75rem;color:var(--text3);margin:0.5rem 0 1rem;">Set limits based on their package (e.g. 250, 350, 500…)</div>
+        <div class="form-row">
+          <label>Couple Photo <span style="font-size:0.72rem;color:var(--text3);">(shown next to their name)</span></label>
+          <div class="logo-upload-area" onclick="document.getElementById('couple-photo-input').click()" style="padding:1rem;">
+            <img id="couple-photo-preview" style="width:70px;height:70px;border-radius:10px;object-fit:cover;margin:0 auto 0.4rem;display:none;border:1px solid var(--border);" />
+            <div id="couple-photo-placeholder">
+              <div style="font-size:1.3rem;"><i class="ri-vip-diamond-line icon-inline"></i></div>
+              <div class="logo-upload-hint">Tap to upload couple photo (optional)</div>
+            </div>
+          </div>
+          <input type="file" id="couple-photo-input" accept="image/*" style="display:none;" onchange="handleCouplePhoto(event)" />
+          <input type="hidden" id="couple-photo-url" value="" />
+        </div>
+        <button class="btn-secondary" onclick="createProject()">Create Project</button>
+
+        <div id="project-link-result" style="display:none;margin-top:1.25rem;padding:1rem 1.25rem;font-size:0.85rem;">
+          <div style="font-weight:600;margin-bottom:0.4rem;"><i class="ri-checkbox-circle-fill icon-inline icon-success"></i> Project created! Share this link:</div>
+          <div id="project-link-text" style="word-break:break-all;color:var(--success);font-family:monospace;font-size:0.78rem;margin-bottom:0.35rem;"></div>
+          <div style="color:var(--text3);font-size:0.75rem;margin-bottom:0.65rem;">Access Code: <strong id="project-code-display" style="color:var(--text2);"></strong></div>
+          <button class="btn-small" onclick="copyProjectLink()" style="background:var(--success);"><i class="ri-file-copy-line icon-inline"></i> Copy Link</button>
+        </div>
+      </div>
+
+      <!-- Edit project inline -->
+      <div id="project-edit-inline" style="display:none;" class="owner-card">
+        <h3>Edit Project</h3>
+        <input type="hidden" id="edit-project-id" />
+        <div class="form-row">
+          <label>Project Name</label>
+          <input type="text" id="edit-project-name" autocomplete="off" />
+        </div>
+        <div class="form-row">
+          <label>Function Category</label>
+          <select id="edit-project-category" onchange="toggleCustomCategoryInput('edit-project-category','edit-project-category-custom')">
+            <option value="">— Select category —</option>
+            <option value="Wedding">Wedding</option>
+            <option value="Engagement">Engagement</option>
+            <option value="Holy Communion">Holy Communion</option>
+            <option value="Baptism">Baptism</option>
+            <option value="Birthday">Birthday</option>
+            <option value="Baby Shower">Baby Shower</option>
+            <option value="Maternity">Maternity</option>
+            <option value="Newborn">Newborn</option>
+            <option value="Pre-Wedding">Pre-Wedding</option>
+            <option value="Post-Wedding">Post-Wedding</option>
+            <option value="Reception">Reception</option>
+            <option value="Housewarming">Housewarming</option>
+            <option value="Graduation">Graduation</option>
+            <option value="Corporate Event">Corporate Event</option>
+            <option value="Fashion Shoot">Fashion Shoot</option>
+            <option value="Portfolio Shoot">Portfolio Shoot</option>
+            <option value="Family Shoot">Family Shoot</option>
+            <option value="Festival">Festival</option>
+            <option value="Anniversary">Anniversary</option>
+            <option value="Other">Other (Custom)</option>
+          </select>
+          <input type="text" id="edit-project-category-custom" autocomplete="off" placeholder="Enter custom category name" style="display:none;margin-top:0.5rem;" />
+        </div>
+        <div class="form-row">
+          <label>Wedding Date</label>
+          <input type="date" id="edit-project-date" />
+        </div>
+        <div class="form-row">
+          <label>Wedding Place</label>
+          <input type="text" id="edit-project-place" autocomplete="off" placeholder="e.g. Kanyakumari, Tamil Nadu" />
+        </div>
+        <div class="form-row">
+          <label>Client Access Code <span style="font-size:0.72rem;color:var(--text3);">(clients use this to log in)</span></label>
+          <input type="text" id="edit-project-code" autocomplete="off" style="text-transform:uppercase;" />
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+          <div class="form-row" style="margin-bottom:0;">
+            <label>Bride Photo Limit</label>
+            <input type="number" id="edit-project-bride-limit" autocomplete="off" min="1" max="2000" />
+          </div>
+          <div class="form-row" style="margin-bottom:0;">
+            <label>Groom Photo Limit</label>
+            <input type="number" id="edit-project-groom-limit" autocomplete="off" min="1" max="2000" />
+          </div>
+        </div>
+        <div class="form-row" style="margin-top:0.85rem;">
+          <label>Couple Photo <span style="font-size:0.72rem;color:var(--text3);">(shown next to their name)</span></label>
+          <div class="logo-upload-area" onclick="document.getElementById('edit-couple-photo-input').click()" style="padding:1rem;">
+            <img id="edit-couple-photo-preview" style="width:70px;height:70px;border-radius:10px;object-fit:cover;margin:0 auto 0.4rem;display:none;border:1px solid var(--border);" />
+            <div id="edit-couple-photo-placeholder">
+              <div style="font-size:1.3rem;"><i class="ri-vip-diamond-line icon-inline"></i></div>
+              <div class="logo-upload-hint">Tap to upload/replace couple photo (optional)</div>
+            </div>
+          </div>
+          <input type="file" id="edit-couple-photo-input" accept="image/*" style="display:none;" onchange="handleEditCouplePhoto(event)" />
+          <input type="hidden" id="edit-couple-photo-url" value="" />
+        </div>
+        <div style="display:flex;gap:0.65rem;margin-top:1rem;">
+          <button class="btn-secondary" style="flex:1;" onclick="saveEditProject()">Save</button>
+          <button class="btn-secondary" style="flex:1;" onclick="document.getElementById('project-edit-inline').style.display='none'">Cancel</button>
+        </div>
+      </div>
+
+      <div class="owner-card">
+        <h3>All Projects</h3>
+        <div class="project-list" id="project-list">
+          <div class="loading"><div class="spinner"></div>Loading projects...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Upload -->
+    <div id="stab-upload" class="tab-content">
+      <div class="section-title">Upload Photos</div>
+      <div class="owner-card">
+        <div class="form-row">
+          <label>Project</label>
+          <select id="upload-project">
+            <option value="">— Choose a project —</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Category</label>
+          <input type="text" id="upload-category" list="upload-category-list" placeholder="e.g. Wedding Photos, Maternity, Baby Shower, Memorial..." autocomplete="off" />
+          <datalist id="upload-category-list"></datalist>
+          <div style="font-size:0.72rem;color:var(--text3);margin-top:0.35rem;">Type any category name — past ones you've used will show as suggestions.</div>
+        </div>
+
+        <!-- Watermark Toggle -->
+        <div class="form-row">
+          <label style="margin-bottom:0.65rem;">Watermark</label>
+          <div style="display:flex;gap:0.65rem;">
+            <button id="wm-enable-btn" onclick="setWatermark(true)" style="
+              flex:1;padding:0.7rem;border-radius:var(--radius-btn);border:1.5px solid var(--accent);
+              background:var(--accent);color:white;font-family:'Inter',sans-serif;
+              font-size:0.85rem;font-weight:500;cursor:pointer;transition:var(--transition);">
+              <i class="ri-lock-line icon-inline"></i> Enable Watermark
+            </button>
+            <button id="wm-disable-btn" onclick="setWatermark(false)" style="
+              flex:1;padding:0.7rem;border-radius:var(--radius-btn);border:1.5px solid var(--border);
+              background:transparent;color:var(--text3);font-family:'Inter',sans-serif;
+              font-size:0.85rem;font-weight:500;cursor:pointer;transition:var(--transition);">
+              <i class="ri-lock-unlock-line icon-inline"></i> Disable Watermark
+            </button>
+          </div>
+          <div id="wm-status" style="font-size:0.75rem;color:var(--text3);margin-top:0.5rem;text-align:center;">Watermark: Enabled</div>
+        </div>
+
+        <div class="upload-area" onclick="document.getElementById('file-input').click()">
+          <div class="upload-icon"><i class="ri-camera-line icon-inline"></i></div>
+          <div class="upload-text">Tap to select photos</div>
+          <div class="upload-note">JPG, PNG supported · Multiple files allowed</div>
+        </div>
+        <input type="file" id="file-input" multiple accept="image/*" onchange="handleFileUpload(event)" />
+        <div class="upload-progress" id="upload-progress">
+          <div class="upload-progress-bar">
+            <div class="upload-progress-fill" id="upload-fill"></div>
+          </div>
+          <div class="upload-status" id="upload-status">Uploading...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Studio My Photos -->
+    <div id="stab-photos" class="tab-content">
+      <div class="section-title">My Uploaded Photos</div>
+      <div class="owner-card" style="padding:1rem 1.25rem;">
+        <div class="form-row" style="margin-bottom:0;">
+          <label>Filter by Project</label>
+          <select id="studio-photos-project" onchange="loadStudioPhotoCategories()">
+            <option value="">— All Projects —</option>
+          </select>
+        </div>
+      </div>
+      <div id="studio-cat-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem;margin-bottom:1rem;"></div>
+      <div id="studio-cat-photos" style="display:none;">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+          <button onclick="closeStudioCatView()" style="background:none;border:1px solid var(--border);border-radius:10px;padding:0.4rem 0.85rem;font-size:0.82rem;cursor:pointer;color:var(--text2);font-family:'Inter',sans-serif;transition:var(--transition);"><i class="ri-arrow-left-line icon-inline"></i> Back</button>
+          <div id="studio-cat-title" style="font-size:1rem;font-weight:600;color:var(--text);"></div>
+        </div>
+        <div class="photo-grid" id="studio-cat-photo-grid"></div>
+      </div>
+    </div>
+
+    <!-- Client Selections (Owner view) -->
+    <div id="stab-selections" class="tab-content">
+      <div class="section-title">Client Selections</div>
+      <div class="owner-card">
+        <div class="form-row" style="margin-bottom:0;">
+          <label>Select Project</label>
+          <select id="view-project" onchange="loadOwnerSelections()">
+            <option value="">— Choose a project —</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="owner-card">
+        <h3><i class="ri-lock-unlock-line icon-inline"></i> My Watermark View <span style="font-size:0.72rem;color:var(--text3);font-weight:400;">(for you only)</span></h3>
+        <p style="font-size:0.82rem;color:var(--text3);margin-bottom:1rem;">Turn this off to view &amp; download the bride/groom selected photos below without your watermark — for your own editing/delivery use. This does <strong>not</strong> change what the client sees on their side.</p>
+        <div style="display:flex;gap:0.6rem;">
+          <button id="opwm-enable-btn" onclick="setOwnerPicksWatermark(true)" style="flex:1;padding:0.55rem;border-radius:8px;font-family:'Inter',sans-serif;font-weight:600;font-size:0.82rem;cursor:pointer;transition:var(--transition);background:var(--accent);border:1px solid var(--accent);color:white;"><i class="ri-lock-line icon-inline"></i> Watermark Visible</button>
+          <button id="opwm-disable-btn" onclick="setOwnerPicksWatermark(false)" style="flex:1;padding:0.55rem;border-radius:8px;font-family:'Inter',sans-serif;font-weight:600;font-size:0.82rem;cursor:pointer;transition:var(--transition);background:transparent;border:1px solid var(--border);color:var(--text2);"><i class="ri-lock-unlock-line icon-inline"></i> Watermark Removed</button>
+        </div>
+        <div id="opwm-status" style="font-size:0.75rem;color:var(--text3);margin-top:0.5rem;text-align:center;">Currently showing: Watermark Visible</div>
+      </div>
+
+      <div id="owner-selections-view"></div>
+    </div>
+
+    <!-- ENQUIRY / PACKAGES TAB -->
+    <div id="stab-enquiry" class="tab-content">
+      <div class="section-title">Enquiry &amp; Packages</div>
+      <div class="owner-card">
+        <p style="font-size:0.85rem;color:var(--text3);margin-bottom:1.25rem;">Create package pages with photos. Share the link with clients so they can view and choose their package.</p>
+        <div id="enquiry-packages-list"></div>
+        <button class="btn-platform" onclick="openCreatePackageModal()" style="margin-top:1rem;width:auto;">+ Create Package Link</button>
+      </div>
+
+      <!-- Create Package Modal (inline) -->
+      <div id="create-package-modal" class="owner-card" style="display:none;">
+        <h3>Create Package</h3>
+        <div class="form-row">
+          <label>Package Type</label>
+          <select id="new-pkg-type">
+            <option value="Standard Package">Standard Package</option>
+            <option value="Silver Package">Silver Package</option>
+            <option value="Gold Package">Gold Package</option>
+            <option value="Platinum Package">Platinum Package</option>
+            <option value="Extra Premium Package">Extra Premium Package</option>
+            <option value="Customized Package">Customized Package</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Description / Price <span style="font-size:0.72rem;color:var(--text3);">(optional)</span></label>
+          <input type="text" id="new-pkg-desc" autocomplete="off" placeholder="e.g. ₹25,000 – 200 edited photos, 1 album" />
+        </div>
+        <div class="form-row">
+          <label>Upload Package Photos</label>
+          <input type="file" id="pkg-photo-upload" multiple accept="image/*" style="margin-top:0.4rem;color:var(--text2);font-size:0.85rem;font-family:'Inter',sans-serif;" />
+          <div id="pkg-upload-progress" style="font-size:0.75rem;color:var(--text3);margin-top:0.5rem;"></div>
+        </div>
+        <div id="pkg-preview-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-top:0.5rem;"></div>
+        <div style="display:flex;gap:0.75rem;margin-top:1rem;">
+          <button class="btn-platform" onclick="savePackage()"><i class="ri-save-line icon-inline"></i> Save &amp; Generate Link</button>
+          <button onclick="document.getElementById('create-package-modal').style.display='none'" style="background:none;border:1px solid var(--border);border-radius:var(--radius-btn);padding:0.5rem 1rem;cursor:pointer;color:var(--text2);font-size:0.85rem;font-family:'Inter',sans-serif;transition:var(--transition);">Cancel</button>
+        </div>
+        <div id="pkg-link-result" style="display:none;margin-top:1.25rem;padding:1rem 1.25rem;">
+          <div style="font-weight:600;margin-bottom:0.4rem;font-size:0.88rem;color:var(--success);"><i class="ri-checkbox-circle-fill icon-inline icon-success"></i> Package link ready! Share with client:</div>
+          <div id="pkg-link-text" style="word-break:break-all;color:var(--accent);font-family:monospace;font-size:0.75rem;margin-bottom:0.65rem;"></div>
+          <button class="btn-small platform" onclick="copyPackageLink()"><i class="ri-file-copy-line icon-inline"></i> Copy Link</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIGITAL INVITATION TAB -->
+    <div id="stab-digital" class="tab-content">
+      <div class="section-title">Digital Invitation</div>
+      <div class="owner-card" style="text-align:center;padding:3rem 1.5rem;">
+        <div style="font-size:2.5rem;margin-bottom:1.25rem;"><i class="ri-mail-line icon-inline"></i></div>
+        <h3 style="font-size:1.25rem;font-weight:700;color:var(--text);margin-bottom:0.75rem;letter-spacing:-0.02em;">Digital Invitation Builder</h3>
+        <p style="font-size:0.875rem;color:var(--text3);max-width:360px;margin:0 auto 1.5rem;">Create beautiful digital wedding invitations and share them with guests directly from here.</p>
+        <div style="display:inline-block;background:rgba(79,140,255,0.1);border:1px solid rgba(79,140,255,0.3);border-radius:10px;padding:0.6rem 1.25rem;font-size:0.82rem;color:var(--accent);font-weight:500;"><i class="ri-rocket-line icon-inline"></i> Coming Soon</div>
+      </div>
+    </div>
+
+    <!-- Subscription -->
+    <div id="stab-subscription" class="tab-content">
+      <div class="section-title">Subscription</div>
+
+      <div class="owner-card" id="studio-subscription-card">
+        <h3>Subscription</h3>
+        <div id="studio-sub-summary" style="font-size:0.9rem;color:var(--text2);margin-bottom:1rem;"></div>
+        <div id="studio-sub-warning"></div>
+        <div id="studio-plan-picker" style="display:flex;flex-direction:column;gap:0.7rem;"></div>
+        <div id="studio-sub-cancel" style="margin-top:0.9rem;text-align:right;"></div>
+        <div style="margin-top:1.1rem;">
+          <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text3);margin-bottom:0.4rem;">Payment History</div>
+          <div id="studio-sub-history" style="font-size:0.8rem;color:var(--text2);"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Studio Settings -->
+    <div id="stab-settings" class="tab-content active">
+      <div class="section-title">My Studio Settings</div>
+
+      <div class="owner-card">
+        <h3>Studio Branding</h3>
+        <div class="form-row">
+          <label>Studio Name <span style="font-size:0.72rem;color:var(--text3);">(shown to clients)</span></label>
+          <input type="text" id="studio-display-name" autocomplete="off" placeholder="e.g. Raj Photography" />
+        </div>
+        <div class="form-row">
+          <label>Studio Logo</label>
+          <div class="logo-upload-area" onclick="document.getElementById('logo-input').click()">
+            <img id="studio-logo-preview" class="logo-preview" style="display:none;" />
+            <div id="studio-logo-placeholder">
+              <div style="font-size:1.5rem;"><i class="ri-camera-line icon-inline"></i></div>
+              <div class="logo-upload-hint">Tap to upload your studio logo</div>
+            </div>
+          </div>
+          <input type="file" id="logo-input" accept="image/*" onchange="handleStudioLogo(event)" style="display:none;" />
+        </div>
+        <div class="form-row">
+          <label>Watermark Image <span style="font-size:0.72rem;color:var(--text3);">(applied to photos when watermark is enabled)</span></label>
+          <div class="logo-upload-area" onclick="document.getElementById('watermark-input').click()">
+            <img id="watermark-preview" style="width:120px;height:50px;object-fit:contain;margin:0 auto 0.4rem;display:none;border:1px dashed var(--border);border-radius:6px;" />
+            <div id="watermark-placeholder">
+              <div style="font-size:1.3rem;"><i class="ri-lock-line icon-inline"></i></div>
+              <div class="logo-upload-hint">Tap to upload watermark image (PNG with transparency recommended)</div>
+            </div>
+          </div>
+          <input type="file" id="watermark-input" accept="image/*" onchange="handleWatermarkUpload(event)" style="display:none;" />
+          <input type="hidden" id="watermark-url" value="" />
+          <div id="watermark-status" style="font-size:0.75rem;color:var(--text3);margin-top:0.4rem;"></div>
+        </div>
+        <button class="btn-secondary" onclick="saveStudioSettings()">Save Branding</button>
+      </div>
+
+      <div class="owner-card">
+        <h3>Custom Folder</h3>
+        <p style="font-size:0.82rem;color:var(--text3);margin-bottom:1rem;">Rename your extra folder. Clients can upload their own photos here.</p>
+        <div class="form-row">
+          <label>Custom Folder Name</label>
+          <input type="text" id="custom-folder-1" autocomplete="off" placeholder="e.g. Family Photos" />
+        </div>
+        <button class="btn-secondary" onclick="saveCustomFolders()">Save Folder Name</button>
+      </div>
+
+      <div class="owner-card" style="border-color:rgba(37,211,102,0.3);">
+        <h3><i class="ri-smartphone-line icon-inline"></i> Client Support Contact</h3>
+        <p style="font-size:0.82rem;color:var(--text3);margin-bottom:0.75rem;">When clients report an issue, it will be sent to these contacts.</p>
+        <div style="background:rgba(22,199,132,0.07);border:1px solid rgba(22,199,132,0.2);border-radius:10px;padding:0.65rem 0.9rem;margin-bottom:1rem;font-size:0.78rem;color:#16C784;">
+          <i class="ri-lightbulb-line icon-inline"></i> <strong>Tip:</strong> Enter your own WhatsApp &amp; email so clients can reach you directly.
+        </div>
+        <div class="form-row">
+          <label>Your WhatsApp Number <span style="font-size:0.72rem;color:var(--text3);">(with country code)</span></label>
+          <input type="tel" id="studio-whatsapp" autocomplete="off" placeholder="e.g. +919876543210" />
+        </div>
+        <div class="form-row">
+          <label>Your Email Address</label>
+          <input type="email" id="studio-email" autocomplete="off" placeholder="e.g. you@studio.com" />
+        </div>
+        <div style="display:flex;gap:0.65rem;flex-wrap:wrap;">
+          <button class="btn-secondary" onclick="saveStudioContact()" style="background:#25D366;border-color:#25D366;color:white;flex:1;"><i class="ri-save-line icon-inline"></i> Save Contact Details</button>
+          <button class="btn-secondary" onclick="resetStudioContactToPlatform()" style="flex:1;font-size:0.82rem;"><i class="ri-arrow-go-back-line icon-inline"></i> Reset to Platform Default</button>
+        </div>
+      </div>
+
+      <div class="owner-card">
+        <h3>Storage</h3>
+        <p style="font-size:0.85rem;color:var(--text2);"><i class="ri-sparkling-2-line icon-inline"></i> Unlimited storage, projects, clients and galleries — included with every active subscription.</p>
+        <div style="margin-top:1rem;background:rgba(79,140,255,0.06);border:1px solid rgba(79,140,255,0.2);border-radius:12px;padding:1rem 1.25rem;">
+          <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.75rem;">
+            <div id="platform-admin-contact-logo" style="width:32px;height:32px;border-radius:8px;background:rgba(79,140,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1rem;overflow:hidden;flex-shrink:0;">✦</div>
+            <div>
+              <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);font-weight:500;">Platform Admin</div>
+              <div id="platform-admin-contact-name" style="font-size:0.88rem;color:var(--text);font-weight:600;"></div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0.5rem;">
+            <a id="platform-admin-contact-whatsapp" href="#" target="_blank" style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:var(--text2);text-decoration:none;">
+              <span><i class="ri-whatsapp-line icon-inline"></i></span> <span></span> <span style="font-size:0.72rem;color:var(--text3);">(Phone &amp; WhatsApp)</span>
+            </a>
+            <a id="platform-admin-contact-email" href="#" style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:var(--text2);text-decoration:none;">
+              <span><i class="ri-mail-send-line icon-inline"></i></span> <span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="owner-card" style="border-color:rgba(239,68,68,0.3);text-align:center;">
+        <h3><i class="ri-alarm-warning-line icon-inline"></i> Report an Issue</h3>
+        <p style="font-size:0.82rem;color:var(--text3);margin-bottom:1rem;">Facing a bug or need help? Send a report straight to the Platform Admin.</p>
+        <button class="btn-secondary" onclick="openReportIssue()" style="background:var(--danger);border-color:var(--danger);color:white;"><i class="ri-alarm-warning-line icon-inline"></i> Report an Issue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIENT PANEL -->
+  <div id="panel-client" style="display:none; flex-direction:column;">
+    <div class="theme-banner" id="client-theme-banner">
+      <div class="theme-banner-icon" id="client-theme-banner-icon"><i class="ri-camera-3-line"></i></div>
+      <div class="theme-banner-text">
+        <div class="theme-banner-label" id="client-theme-banner-label">Wedding</div>
+        <div class="theme-banner-tagline" id="client-theme-banner-tagline">Your Memories, Beautifully Kept</div>
+      </div>
+    </div>
+    <div class="main-tabs">
+      <div class="main-tab active" onclick="showTab('client','browse')">Uploaded Photos</div>
+      <div class="main-tab" onclick="showTab('client','selections')">My Selections</div>
+      <div class="main-tab" onclick="showTab('client','upload')">My Photos</div>
+    </div>
+
+    <!-- Browse -->
+    <div id="ctab-browse" class="tab-content active">
+      <div class="counters" id="client-counters" style="grid-template-columns:repeat(3,1fr);">
+        <div class="counter-card" onclick="openSelectionView('liked')" title="View liked photos">
+          <div class="counter-icon"><i class="ri-heart-fill icon-inline"></i></div>
+          <div class="counter-num liked" id="count-liked">0</div>
+          <div class="counter-label">Liked</div>
+          <div class="counter-limit">Unlimited</div>
+        </div>
+        <div class="counter-card" onclick="openSelectionView('bride')" title="View bride album">
+          <div class="counter-icon"><i class="ri-women-line icon-inline"></i></div>
+          <div class="counter-num bride" id="count-bride">0</div>
+          <div class="counter-label">Bride</div>
+          <div class="counter-limit" id="limit-bride">0/250</div>
+          <div class="progress-bar"><div class="progress-fill bride" id="prog-bride" style="width:0%"></div></div>
+        </div>
+        <div class="counter-card" onclick="openSelectionView('groom')" title="View groom album">
+          <div class="counter-icon"><i class="ri-men-line icon-inline"></i></div>
+          <div class="counter-num groom" id="count-groom">0</div>
+          <div class="counter-label">Groom</div>
+          <div class="counter-limit" id="limit-groom">0/250</div>
+          <div class="progress-bar"><div class="progress-fill groom" id="prog-groom" style="width:0%"></div></div>
+        </div>
+      </div>
+
+      <!-- Category grid -->
+      <div id="client-cat-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem;margin-bottom:1rem;"></div>
+
+      <!-- Expanded category photos -->
+      <div id="client-cat-expanded" style="display:none;">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;flex-wrap:wrap;">
+          <button onclick="closeClientCatView()" style="background:none;border:1px solid var(--border);border-radius:10px;padding:0.4rem 0.85rem;font-size:0.82rem;cursor:pointer;color:var(--text2);font-family:'Inter',sans-serif;transition:var(--transition);"><i class="ri-arrow-left-line icon-inline"></i> Back</button>
+          <div id="client-cat-title" style="font-size:1rem;font-weight:600;color:var(--text);flex:1;"></div>
+          <button id="save-selections-btn" onclick="saveAllSelections()" style="
+            background: var(--accent);
+            color: white;
+            font-family:'Inter',sans-serif;
+            font-weight:600;
+            font-size:0.85rem;
+            border:none;
+            border-radius:var(--radius-btn);
+            padding:0.5rem 1.25rem;
+            cursor:pointer;
+            box-shadow:0 4px 16px rgba(79,140,255,0.3);
+            display:inline-flex;align-items:center;gap:0.4rem;
+            transition:var(--transition);
+          "><i class="ri-save-line icon-inline"></i> Save</button>
+        </div>
+        <div id="save-pending-hint" style="display:none;border-radius:10px;padding:0.6rem 0.9rem;margin-bottom:0.75rem;font-size:0.78rem;text-align:center;font-weight:500;">
+          <i class="ri-error-warning-line icon-inline"></i> You have unsaved changes — tap <strong>Save</strong> to confirm
+        </div>
+        <div class="photo-grid" id="photo-grid"></div>
+      </div>
+    </div>
+
+    <!-- My Selections (Client) -->
+    <div id="ctab-selections" class="tab-content">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;">
+        <div class="section-title" style="margin-bottom:0;">My Selections</div>
+        <button id="sel-edit-toggle" onclick="toggleSelectionEditMode()" style="background:none;border:1px solid var(--border);border-radius:10px;padding:0.4rem 0.85rem;font-size:0.78rem;cursor:pointer;color:var(--text2);font-family:'Inter',sans-serif;"><i class="ri-pencil-line icon-inline"></i> Edit &amp; Delete</button>
+      </div>
+      <div id="client-selections-view">
+        <div class="loading"><div class="spinner"></div>Loading...</div>
+      </div>
+    </div>
+
+    <!-- My Photos (Client Upload) -->
+    <div id="ctab-upload" class="tab-content">
+      <div class="section-title">My Photo Collection</div>
+      <p style="font-size:0.85rem;color:var(--text3);margin-bottom:1.25rem;">Upload your own photos here (from phone, family, etc.) — your studio can also view these.</p>
+
+      <div class="owner-card">
+        <h3>My Custom Folder</h3>
+        <p style="font-size:0.82rem;color:var(--text3);margin-bottom:0.85rem;">Rename your folder to anything you like.</p>
+        <div class="folder-name-row">
+          <span style="font-size:0.9rem;"><i class="ri-folder-line icon-inline"></i></span>
+          <input type="text" id="client-folder-name-1" placeholder="e.g. Family Photos" />
+          <button class="btn-small" onclick="saveClientFolderNames()">Save</button>
+        </div>
+      </div>
+
+      <div class="owner-card">
+        <h3>Upload My Photos</h3>
+        <div class="upload-area" onclick="document.getElementById('client-file-input').click()">
+          <div class="upload-icon"><i class="ri-image-line icon-inline"></i></div>
+          <div class="upload-text">Tap to upload your own photos</div>
+          <div class="upload-note">These will be visible to your studio</div>
+        </div>
+        <input type="file" id="client-file-input" multiple accept="image/*" onchange="handleClientUpload(event)" style="display:none;" />
+        <div class="upload-progress" id="client-upload-progress">
+          <div class="upload-progress-bar">
+            <div class="upload-progress-fill" id="client-upload-fill"></div>
+          </div>
+          <div class="upload-status" id="client-upload-status">Uploading...</div>
+        </div>
+      </div>
+
+      <div class="owner-card">
+        <h3 id="client-own-folder-title">My Uploaded Photos</h3>
+        <div id="client-own-photos">
+          <div class="loading"><div class="spinner"></div>Loading...</div>
+        </div>
+      </div>
+
+      <div class="owner-card" style="border-color:rgba(239,68,68,0.3);text-align:center;">
+        <h3><i class="ri-alarm-warning-line icon-inline"></i> Report an Issue</h3>
+        <p style="font-size:0.82rem;color:var(--text3);margin-bottom:1rem;">Facing a bug or need help? Send a report to your studio &amp; the Platform Admin.</p>
+        <button class="btn-secondary" onclick="openReportIssue()" style="background:var(--danger);border-color:var(--danger);color:white;"><i class="ri-alarm-warning-line icon-inline"></i> Report an Issue</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /screen-app -->
+
+<!-- ══════════════════════ LIGHTBOX ══════════════════════ -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+  <div class="lightbox-header">
+    <div class="lightbox-title" id="lb-title"></div>
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close photo viewer"><i class="ri-close-line icon-inline"></i></button>
+  </div>
+  <div class="lightbox-counter" id="lb-counter"></div>
+  <button class="lightbox-nav prev" onclick="lbNav(-1)" aria-label="Previous photo"><i class="ri-arrow-left-s-line icon-inline"></i></button>
+  <div class="lightbox-img-wrap">
+    <img id="lb-img" alt="Photo" onerror="if(window.stripWatermark) this.src=stripWatermark(this.src)" />
+  </div>
+  <button class="lightbox-nav next" onclick="lbNav(1)" aria-label="Next photo"><i class="ri-arrow-right-s-line icon-inline"></i></button>
+  <div class="lightbox-footer" id="lb-footer"></div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- Report Issue button now lives inline at the bottom of "My Studio" (studio) and "My Photos" (client) tabs — see stab-settings / ctab-upload — so it no longer floats over every screen and photo. -->
+<button id="report-fab" onclick="openReportIssue()" style="display:none;"></button>
+
+<!-- Report Issue Modal -->
+<div id="report-modal" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.65);
+  z-index:9000;
+  align-items:flex-end;
+  justify-content:center;
+  backdrop-filter:blur(4px);
+">
+  <div style="
+    background:var(--bg2);
+    border:1px solid var(--border);
+    border-radius:20px 20px 0 0;
+    padding:1.5rem 1.25rem 2.5rem;
+    width:100%;
+    max-width:480px;
+    max-height:90vh;
+    overflow-y:auto;
+    box-shadow:var(--shadow-lg);
+  ">
+    <div style="width:36px;height:3px;background:var(--border);border-radius:2px;margin:0 auto 1.25rem;"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;">
+      <div>
+        <div style="font-size:1.1rem;font-weight:700;color:var(--text);letter-spacing:-0.01em;"><i class="ri-alarm-warning-line icon-inline"></i> Report an Issue</div>
+        <div id="report-modal-sub" style="font-size:0.78rem;color:var(--text3);margin-top:0.2rem;"></div>
+      </div>
+      <button onclick="closeReportIssue()" aria-label="Close report form" style="background:var(--card);border:1px solid var(--border);border-radius:10px;width:40px;height:40px;font-size:1rem;cursor:pointer;color:var(--text3);display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;"><i class="ri-close-line icon-inline"></i></button>
+    </div>
+
+    <div style="background:var(--card);border-radius:10px;padding:0.85rem 1rem;margin-bottom:1rem;font-size:0.82rem;color:var(--text2);">
+      <span id="report-sender-info"></span>
+    </div>
+
+    <div style="margin-bottom:1rem;">
+      <label style="display:block;font-size:0.78rem;font-weight:500;color:var(--text2);margin-bottom:0.5rem;">Issue Type</label>
+      <select id="report-type" style="width:100%;padding:0.75rem 1rem;border:1px solid var(--border);border-radius:10px;font-family:'Inter',sans-serif;font-size:0.88rem;background:var(--input-bg);color:var(--text);outline:none;">
+        <option value="Bug / Something not working">Bug / Something not working</option>
+        <option value="Photos not loading">Photos not loading</option>
+        <option value="Upload not working">Upload not working</option>
+        <option value="Login problem">Login problem</option>
+        <option value="Missing feature / Request">Feature request</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <div style="margin-bottom:1rem;">
+      <label style="display:block;font-size:0.78rem;font-weight:500;color:var(--text2);margin-bottom:0.5rem;">Describe the Issue <span style="color:var(--danger);">*</span></label>
+      <textarea id="report-description" rows="4" placeholder="Please describe what happened, what you were trying to do, and what went wrong..." style="width:100%;padding:0.75rem 1rem;border:1px solid var(--border);border-radius:10px;font-family:'Inter',sans-serif;font-size:0.88rem;background:var(--input-bg);color:var(--text);outline:none;resize:vertical;min-height:100px;box-sizing:border-box;"></textarea>
+    </div>
+
+    <div style="margin-bottom:1.5rem;">
+      <label style="display:block;font-size:0.78rem;font-weight:500;color:var(--text2);margin-bottom:0.5rem;">Your Name / Contact <span style="color:var(--text3);font-weight:400;">(optional)</span></label>
+      <input type="text" id="report-contact" placeholder="So we can follow up with you" style="width:100%;padding:0.75rem 1rem;border:1px solid var(--border);border-radius:10px;font-family:'Inter',sans-serif;font-size:0.88rem;background:var(--input-bg);color:var(--text);outline:none;box-sizing:border-box;" />
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:0.6rem;">
+      <button onclick="sendReportWhatsApp()" style="width:100%;padding:0.9rem;background:#25D366;color:white;border:none;border-radius:var(--radius-btn);font-family:'Inter',sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.5rem;transition:var(--transition);">
+        <span><i class="ri-whatsapp-line icon-inline"></i></span> Send via WhatsApp
+      </button>
+      <button onclick="sendReportEmail()" style="width:100%;padding:0.9rem;background:var(--card-hover);color:var(--text);border:1px solid var(--border);border-radius:var(--radius-btn);font-family:'Inter',sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.5rem;transition:var(--transition);">
+        <span><i class="ri-mail-send-line icon-inline"></i></span> Send via Email
+      </button>
+      <button onclick="sendReportBoth()" style="width:100%;padding:0.9rem;background:var(--accent);color:white;border:none;border-radius:var(--radius-btn);font-family:'Inter',sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.5rem;transition:var(--transition);box-shadow:0 4px 16px rgba(79,140,255,0.3);">
+        <span><i class="ri-rocket-line icon-inline"></i></span> Send via Both
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/themes.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/navigation.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/platform.js"></script>
+<script src="js/studio.js"></script>
+<script src="js/gallery.js"></script>
+<script src="js/upload.js"></script>
+<script src="js/selection.js"></script>
+<script src="js/client.js"></script>
+<script src="js/lightbox.js"></script>
+<script src="js/reports.js"></script>
+<script>
+loadPlatformSettings();
+</script>
+  <div class="props-overlay" id="props-overlay" onclick="if(event.target===this) closePhotoProps()">
+    <div class="props-card" onclick="event.stopPropagation()">
+      <div class="props-card-header">
+        <div class="props-card-title"><i class="ri-file-list-3-line icon-inline"></i> Photo Properties</div>
+        <button class="props-close" onclick="closePhotoProps()" aria-label="Close photo details"><i class="ri-close-line icon-inline"></i></button>
+      </div>
+      <div id="props-body"></div>
+      <div class="props-actions">
+        <button onclick="copyPhotoPropUrl()">🔗 Copy URL</button>
+        <button onclick="closePhotoProps()">Close</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

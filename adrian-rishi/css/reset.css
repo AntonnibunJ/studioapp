@@ -1,0 +1,67 @@
+/* ============================================================
+   reset.css
+   Auto-extracted from original inline <style> block.
+   No CSS rules were changed, renamed, or reordered within
+   this file relative to the original stylesheet.
+   ============================================================ */
+
+/* ══════════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; color-scheme: dark; }
+
+/* Respect a system-level request for higher contrast without
+   redesigning anything — just strengthens borders/text where the
+   luxury palette's soft hairlines would otherwise be too subtle. */
+@media (prefers-contrast: more) {
+  :root {
+    --border: #3A4A41;
+    --text3: #B7C4BB;
+    --hairline: rgba(224,214,181,0.32);
+  }
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ambient background glow */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 50%, rgba(47,110,86,0.04) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 20%, rgba(22,199,132,0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+/* ══════════════════════════════════════════
+   KEYBOARD FOCUS
+══════════════════════════════════════════ */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+
+/* ══════════════════════════════════════════
+   SCROLLBAR
+══════════════════════════════════════════ */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+
+
